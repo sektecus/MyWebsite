@@ -1,0 +1,45 @@
+/* Main Style */
+
+html {
+	background-color: #4f5763;
+	font-family: arial, sans-serif;
+	font-size 105%;
+}
+
+.main {
+	background-color: #FFF;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 40px;
+	padding-right: 40px;
+	box-sizing: border-box;
+}
+
+.contentArea {
+	float: left;
+	width: 65%;
+}
+
+.sidebar {
+	float: right;
+	width: 30%;
+}
+
+/* END MAIN STYLE */
+
+/* Float Fix */
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+
+.group:after {
+	clear: both;
+}
+
+.group {
+	zoom: 1;
+}
+/* End Float Fix */
