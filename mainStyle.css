@@ -8,12 +8,26 @@ html {
 
 .container {
 	background-color: #FFF;
-	width: 960px;
+	max-width: 960px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 40px;
 	padding-right: 40px;
 	box-sizing: border-box;
+}
+@media screen and (max-width: 480px) {
+	.container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+@media screen and (min-width: 1300px) {
+	.container {
+		max-width: 1200px;
+	}
+	html {
+		font-size: 120%;
+	}
 }
 
 .main-area {
@@ -35,6 +49,13 @@ html {
 	width: 30%;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+@media screen and (max-width: 1020px) {
+	.main-area,
+	.sidebar {
+		width: auto;
+		float: none;
+	}
 }
 .headline {
 	text-shadow: 3px 3px 1px #4f5763;
@@ -91,6 +112,35 @@ footer {
 }
 .site-nav a:hover {
 	border: 3px solid #FFF;
+}
+@media screen and (max-width: 700px) {
+	.main-area {
+		padding-right: 0;
+	}
+	.site-nav {
+		background-color: #FFF;
+	}
+	.site-nav li {
+		width: 33.32%;
+		margin-right: 0;
+	}
+	.site-nav a {
+		border: none;
+		padding: 15px 0;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		text-align: center;
+		font-size: 150%;
+		background-color: #4f5763;
+	}
+	.site-nav a:hover {
+		border: none;
+	}
+}
+@media screen and (max-width: 520px) {
+	.site-nav li {
+		width: 50%;
+	}
 }
 
 /* END SITE NAVIGATION */
