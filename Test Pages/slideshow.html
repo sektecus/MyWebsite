@@ -3,7 +3,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> SUR Party Stories</title>
-        <link rel="stylesheet" href="CSS/party-stories.css">
+        <link rel="stylesheet" href="../CSS/slideshow.css">
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/cycle2.js"></script>
     </head>
 
     <body>
@@ -28,14 +30,40 @@
                 <div class="row">
                     <div class="col col-md-9">
                         <h2>Latest Posts:</h2>
+                        <div class="cycle-slideshow slideshow" data-cycle-slides=".slide">
+                            <!-- 'data-cycle-slide=""' allows us to replace the cycled
+                            images with any CSS element we want, in this case, .slide -->
+                            <span class="cycle-prev">Previous</span>
+                            <span class="cycle-next">Next</span>
+                            <div class="slide">
+                                <img src="../images/bee.jpg" alt="Bee">
+                                <div class="slide-description">
+                                    <h3>Bee Title Here</h3>
+                                    <p>This is the caption or description text for the bee slide.</p>
+                                </div>        
+                            </div>
+                            <div class="slide">
+                                <img src="../images/duck.jpg" alt="Duck">
+                                <div class="slide-description">
+                                    <h3>Duck Title Here</h3>
+                                    <p>This is the caption or description text for the duck slide.</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <img src="../images/squirrel.jpg" alt="Squirrel">
+                                <div class="slide-description">
+                                    <h3>Squirrel Title Here</h3>
+                                    <p>This is the caption or description text for the squirrel slide.</p>
+                                </div>
+                            </div>                           
+                        </div><!-- /cycle-slideshow slideshow -->
                         <div class="row">
                             <div class="col col-sm-6 col-lg-3">
                                 <div class="box-a">
-                                    <a href="pizza-hut.html">
-                                        <p><strong>Here's to you, Pizza Hut</strong></p>
-                                        <p>In 1987, a little time, determination, and some help from everyone's
-                                            favorite pizza place, can go a long way.
-                                        </p>
+                                    <a href="oops.html">
+                                        <p><strong>First Party Story Headline</strong></p>
+                                        <p>Brief, enticing description of the story goes here. This is designed to be
+                                        a blerb and is designed to be a link to the story.</p>
                                     </a>
                                 </div><!-- /box-a -->
                             </div><!-- /col col-sm-6 col-lg-3 -->
@@ -71,7 +99,7 @@
                     <div class="col col-md-3 sidebar">
                         <h3>Stories by Date:</h3>
                         <ul class="story-list">
-                            <li><a href="pizza-hut.html">1987: Here's to you, Pizza Hut</a></li>
+                            <li><a href="oops.html">31 May 2018: Story 1</a></li>
                             <li><a href="oops.html">31 May 2018: Story 2</a></li>
                             <li><a href="oops.html">31 May 2018: Story 3</a></li>
                             <li><a href="oops.html">31 May 2018: Story 4</a></li>

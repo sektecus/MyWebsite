@@ -10,7 +10,7 @@ body {
 h1, h2, h3 {margin-top: 0;}
 img {
     max-width: 100%;
-    max-height: auto;
+    height: auto;
 }
 a {
     text-decoration: none;
@@ -96,10 +96,12 @@ header p {
     color: #FFF;
     padding: 10px 20px;
     background-color: #454c57;
+    transition-property: color, background-color; /* tells browser which property to transition */
+    transition-duration: 2s; /* tells browser how long the transition should take */
 }
 .site-nav a:hover {
-    background-color: #FFF;
     color: #454c57;
+    background-color: #FFF;
 }
 @media screen and (max-width: 1020px) {
     .site-nav a {
@@ -136,6 +138,38 @@ header p {
         padding-top: 20px;
     }
 }
+.image-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition-property: all;
+    transition-duration: 1s;
+}
+.image-banner:hover img { /* when banner element is hovered, the img will be affected */
+    transform: scale(1.5);
+}
+.image-banner {
+    position: relative;
+    overflow: hidden; /* hides any content that goes beyond the div's boundaries;
+    this, in conjunction with the transform below, hides the caption */
+    margin-bottom: 20px;
+}
+.banner-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    color: #FFF;
+    padding: 20px;
+    opacity: 0; /* makes text start invisible - it will tranistion into visibility */
+    transition-property: all;
+    transition-duration: 1s;
+    transform: translateY(100%); /* pushes content down, out of view, to start */
+}
+.image-banner:hover .banner-description {
+    transform: translateY(0);
+    opacity: 1;
+}
 .sidebar {
     color: #999;
     font-size: 85%;
@@ -165,46 +199,71 @@ header p {
         display: none;
     }
 }
-.box-a { 
+.box-a {
+    background-color: #ECECEC;
+    padding: 20px 20px 0 20px;
+    border: 2px solid #5d5d5d;
+    margin-bottom: 30px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, .5), /* horiz vert blur color */
+    inset 10px 10px 5px rgba(0, 0, 0, .15); /* 'inset' puts the shadow inside the box */
+    border-radius: 10px; /* gives boxes rounded edges; if you use two values, the first value will
+    style the top left and bottom right and the second value will use the other two; you can enter 4 values
+    to style each corner independently, in a clockwise fashion */
+    /* you can style with elliptical rounding by declaring the pixels as '10px/25px' - the first value is
+    the horizontal radius and the second is the vertical radius of the rounding property  */
+}
+.box-b {
+    background-color: #ECECEC;
+    width: 150px;
+    height: 150px;
+    padding: 20px 20px 0 20px;
+    border: 2px solid #5d5d5d;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    transition: all 1s;
+    transition-timing-function: ease-in; /* linear would be steady transition; see also
+    ease-out, ease-in-out; could also be 'transition: all 1s ease-in;' */
+}
+.box-b:hover {
+    transform: rotate(360deg);
+}
+.box-b p {
+    margin-top: 50px;
+}
+.box-c,
+.box-d {
+    background-color: #ECECEC;
+    padding: 20px 20px 0 20px;
+    border: 2px solid #5d5d5d;
     margin-bottom: 30px;
 }
-.box-a a{
+.box-d img,
+.box-c img {
+    margin-bottom: 10px;
+}
+.box-c {
+    transform: scale(1.5);
+    transform-origin: 0 0; /* this will reposition to make the box start placement at its
+    original 0 top 0 left position, and expand from there, rather than expanding in all directions;
+    'transform-origin: 100% 0;' would repositon the box to grow out from its top right corner */
+}
+.box-d {
+    transform: rotate(90deg) skewX(15deg) skewY(10deg) scale(.7) translateY(-120px);
+    /* translateY shifts the image down the y access; translateX travels horizontally;
+    translate(x, y) will shift both; translate is used for animation, position: relative
+    is used for layout purposes */
+}
+.box-a a,
+.box-b a,
+.box-c a,
+.box-d a {
     color: #142444;
 }
 @media screen and (max-width: 700px) {
     .box-a {
         margin-bottom: 15px;
     }
-}
-.comic-gal img {
-    display: block;
-    transition-property: all;
-    transition-duration: 1s;
-}
-.comic-gal:hover img {
-    transform: scale(1.5);
-}
-.comic-gal {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-}
-.image-caption {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	color: #FFF;
-	background-color: rgba(0, 0, 0, .65);
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    transition-property: all;
-    transition-duration: 1s;
-    transform: translateY(100%);
-}
-.comic-gal:hover .image-caption {
-    transform: translateY(0);
 }
 
 /* END CONTENT */

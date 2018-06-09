@@ -10,7 +10,7 @@ body {
 h1, h2, h3 {margin-top: 0;}
 img {
     max-width: 100%;
-    max-height: auto;
+    height: auto;
 }
 a {
     text-decoration: none;
@@ -165,8 +165,12 @@ header p {
         display: none;
     }
 }
-.box-a { 
+.box-a {
+    background-color: #ECECEC;
+    padding: 20px 20px 0 20px;
+    border: 2px solid #5d5d5d;
     margin-bottom: 30px;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, .5)
 }
 .box-a a{
     color: #142444;
@@ -176,38 +180,50 @@ header p {
         margin-bottom: 15px;
     }
 }
-.comic-gal img {
-    display: block;
-    transition-property: all;
-    transition-duration: 1s;
+
+/* END CONTENT */
+
+/* SLIDESHOW */
+
+.slideshow {
+    margin-bottom: 40px;
 }
-.comic-gal:hover img {
-    transform: scale(1.5);
-}
-.comic-gal {
-    position: relative;
-    overflow: hidden;
+.slide {
     width: 100%;
+    position: relative;
 }
-.image-caption {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	color: #FFF;
-	background-color: rgba(0, 0, 0, .65);
+.slide img {
+    display: block;
+}
+.slide-description {
+    position: absolute;
+    bottom: 0;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, .5);
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
-    text-align: center;
-    transition-property: all;
-    transition-duration: 1s;
-    transform: translateY(100%);
 }
-.comic-gal:hover .image-caption {
-    transform: translateY(0);
+.slide-description h3,
+.slide-description p {
+    margin: 0;
 }
 
-/* END CONTENT */
+/* END SLIDESHOW */
+
+/* PREV AND NEXT */
+
+.cycle-prev {
+    position: absolute;
+    top: 30%;
+    background-color: rgba(0, 0, 0, .5);
+    color: #FFF;
+    padding: 1px 10px;
+    display: block;
+    cursor: pointer;
+    font-size: 130%;
+    z-index: 1000; /* ensures it's on top */ 
+}
 
 /* GRID */
 
