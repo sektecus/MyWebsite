@@ -106,12 +106,12 @@ footer {
 	display: block;
 	text-decoration: none;
 	color: #FFF;
-	padding: 3px 5px;
-	border: 3px solid #4f5763;
-	border-bottom: none;
+	padding: 6px 8px;
+	
 }
 .site-nav a:hover {
-	border: 3px solid #FFF;
+	background-color: #FFF;
+	color: #4f5763;
 }
 @media screen and (max-width: 700px) {
 	.main-area {
