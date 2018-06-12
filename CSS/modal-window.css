@@ -30,11 +30,6 @@ a {
 .first-letter {
 	font-size: 140%;
 }
-@media screen and (max-width: 767px) {
-    .headline {
-        margin-right: 300px;
-    }
-}
 
 /* MAIN COLUMN */
 
@@ -82,43 +77,6 @@ header p {
 
 /* END MAIN COLUMN */
 
-/* HIDE/SHOW BUTTON */
-
-.toggle-btn {
-    display: none;
-}
-@media screen and (max-width: 767px) {
-    .toggle-btn-visible {
-        display: block;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    .toggle-target-hidden {
-        display: none;
-    }
-    .toggle-target-expanded {
-        display: block;
-    }
-}
-.main-text-body .toggle-btn-visible {
-    display: block;
-}
-.main-text-body .toggle-target-hidden {
-    display: none;
-}
-.main-text-body .toggle-target-expanded {
-    display: block;
-}
-.read-more {
-    text-decoration: underline;
-    color: blue;
-}
-.read-more:hover {
-    text-decoration: none;
-}
-
-/* END HIDE/SHOW BUTTON */
-
 /* SITE NAVIGATION */
 
 .site-nav {
@@ -138,10 +96,12 @@ header p {
     color: #FFF;
     padding: 10px 20px;
     background-color: #454c57;
+    transition-property: color, background-color; /* tells browser which property to transition */
+    transition-duration: 2s; /* tells browser how long the transition should take */
 }
 .site-nav a:hover {
-    background-color: #FFF;
     color: #454c57;
+    background-color: #FFF;
 }
 @media screen and (max-width: 1020px) {
     .site-nav a {
@@ -166,6 +126,34 @@ header p {
 
 /* END SITE NAVIGATION */
 
+/* THUMBNAIL STYLES */
+
+.thumbnails {
+    margin-right: -15px; /* this counters the last pic on the right's padding */
+}
+.thumbnails a {
+    float: left;
+    width: 25%;
+    padding-right: 15px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+.thumbnails img {
+    display: block; /* this gets rid of default page formatting for these images */
+    transition: all .2s ease-in-out;
+}
+.thumbnails:hover img {
+    opacity: .6;
+    transform: scale(.92);
+}
+.thumbnails img:hover {
+    opacity: 1;
+    transform: scale(1) rotate(2deg);
+    box-shadow: 0 0 7px rgba(0, 0, 0, .5);
+}
+
+/* END THUMBNAIL STYLES */
+
 /* CONTENT */
 
 .content-area {
@@ -177,6 +165,38 @@ header p {
     .content-area {
         padding-top: 20px;
     }
+}
+.image-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition-property: all;
+    transition-duration: 1s;
+}
+.image-banner:hover img { /* when banner element is hovered, the img will be affected */
+    transform: scale(1.5);
+}
+.image-banner {
+    position: relative;
+    overflow: hidden; /* hides any content that goes beyond the div's boundaries;
+    this, in conjunction with the transform below, hides the caption */
+    margin-bottom: 20px;
+}
+.banner-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    color: #FFF;
+    padding: 20px;
+    opacity: 0; /* makes text start invisible - it will tranistion into visibility */
+    transition-property: all;
+    transition-duration: 1s;
+    transform: translateY(100%); /* pushes content down, out of view, to start */
+}
+.image-banner:hover .banner-description {
+    transform: translateY(0);
+    opacity: 1;
 }
 .sidebar {
     color: #999;
@@ -212,9 +232,60 @@ header p {
     padding: 20px 20px 0 20px;
     border: 2px solid #5d5d5d;
     margin-bottom: 30px;
-    box-shadow: 10px 10px 5px rgba(0, 0, 0, .5)
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, .5), /* horiz vert blur color */
+    inset 10px 10px 5px rgba(0, 0, 0, .15); /* 'inset' puts the shadow inside the box */
+    border-radius: 10px; /* gives boxes rounded edges; if you use two values, the first value will
+    style the top left and bottom right and the second value will use the other two; you can enter 4 values
+    to style each corner independently, in a clockwise fashion */
+    /* you can style with elliptical rounding by declaring the pixels as '10px/25px' - the first value is
+    the horizontal radius and the second is the vertical radius of the rounding property  */
 }
-.box-a a{
+.box-b {
+    background-color: #ECECEC;
+    width: 150px;
+    height: 150px;
+    padding: 20px 20px 0 20px;
+    border: 2px solid #5d5d5d;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    transition: all 1s;
+    transition-timing-function: ease-in; /* linear would be steady transition; see also
+    ease-out, ease-in-out; could also be 'transition: all 1s ease-in;' */
+}
+.box-b:hover {
+    transform: rotate(360deg);
+}
+.box-b p {
+    margin-top: 50px;
+}
+.box-c,
+.box-d {
+    background-color: #ECECEC;
+    padding: 20px 20px 0 20px;
+    border: 2px solid #5d5d5d;
+    margin-bottom: 30px;
+}
+.box-d img,
+.box-c img {
+    margin-bottom: 10px;
+}
+.box-c {
+    transform: scale(1.5);
+    transform-origin: 0 0; /* this will reposition to make the box start placement at its
+    original 0 top 0 left position, and expand from there, rather than expanding in all directions;
+    'transform-origin: 100% 0;' would repositon the box to grow out from its top right corner */
+}
+.box-d {
+    transform: rotate(90deg) skewX(15deg) skewY(10deg) scale(.7) translateY(-120px);
+    /* translateY shifts the image down the y access; translateX travels horizontally;
+    translate(x, y) will shift both; translate is used for animation, position: relative
+    is used for layout purposes */
+}
+.box-a a,
+.box-b a,
+.box-c a,
+.box-d a {
     color: #142444;
 }
 @media screen and (max-width: 700px) {
@@ -224,105 +295,6 @@ header p {
 }
 
 /* END CONTENT */
-
-/* SLIDESHOW */
-
-.slideshow {
-    margin-bottom: 40px;
-}
-.slide {
-    width: 100%;
-    position: relative;
-}
-.slide img {
-    display: block;
-}
-.slide-description {
-    position: absolute;
-    bottom: 0;
-    color: #FFF;
-    background-color: rgba(0, 0, 0, .5);
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-@media screen and (max-width: 767px) {
-    .slide-description {
-        position: static; /* negates the position: absolute; attribute */
-        background-color: #000;
-    }
-}
-.slide-description h3,
-.slide-description p {
-    margin: 0;
-}
-.cycle-pager {
-    position: absolute;
-    top: 20px;
-    z-index: 1003;
-    width: 100%;
-    text-align: center;
-}
-.cycle-pager span { /* when you inspect element on the markers, you find that they're spans */
-    text-indent: -9000px; /* makes sure the bullets don't show */
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%; /* makes each marker a circl */
-    background-color: #FFF;
-    margin: 0 4px; /* adds horizontal margins */
-    cursor: pointer;
-}
-.cycle-pager .cycle-pager-active {
-    background-color: rgba(0, 0, 0, .5);
-}
-
-/* END SLIDESHOW */
-
-/* PREV AND NEXT */
-
-.cycle-prev,
-.cycle-next {
-    position: absolute;
-    top: 30%;
-    background-color: rgba(0, 0, 0, .5);
-    color: #FFF;
-    padding: 1px 10px;
-    display: block;
-    cursor: pointer;
-    font-size: 130%;
-    z-index: 1000; /* ensures it's on top */ 
-    opacity: 0;
-    transition: opacity .5s;
-}
-.cycle-next {
-    right: 0;
-}
-.slideshow:hover .cycle-next,
-.slideshow:hover .cycle-prev {
-    opacity: 1;
-}
-
-/* END PREV AND NEXT */
-
-/* BUTTON A STYLE */
-
-.btn-a {
-    padding: 6px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: #999;
-    color: #FFF;
-    font-size: 84%;
-    margin-left: 10px;
-}
-.btn-a:hover {
-    background-color: #FFF;
-    color: #999;
-}
-
-/* END BUTTON A STYLE */
 
 /* GRID */
 

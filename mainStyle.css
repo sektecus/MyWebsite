@@ -84,6 +84,49 @@ footer {
 
 /* END MAIN STYLE */
 
+/* HIDE/SHOW BUTTON */
+
+.toggle-btn {
+	display: none;
+}
+@media screen and (max-width: 700px) {
+    .toggle-btn-visible {
+        display: block;
+	}
+	.menu-btn {
+		margin-top: 10px;
+		margin-bottom: 0;
+		background-color: #4f5763;
+		color: #FFF;
+		font-size: 150%;
+		padding: 5px 10px;
+	}
+    .toggle-target-hidden {
+        display: none;
+    }
+    .toggle-target-expanded {
+        display: block;
+    }
+}
+.main-text-body .toggle-btn-visible {
+    display: block;
+}
+.main-text-body .toggle-target-hidden {
+    display: none;
+}
+.main-text-body .toggle-target-expanded {
+    display: block;
+}
+.read-more {
+    text-decoration: underline;
+    color: blue;
+}
+.read-more:hover {
+    text-decoration: none;
+}
+
+/* END HIDE/SHOW BUTTON */
+
 /* SITE NAVIGATION */
 
 .site-nav {
@@ -201,14 +244,16 @@ img {
 .comic-gal {
 	position: relative;
 	display: block;
+	overflow: hidden;
 }
 .image-caption {
 	position: absolute;
+	width: 100%;
 	bottom: 0;
 	left: 0;
 	color: #FFF;
 	background-color: rgba(0, 0, 0, .65);
-	padding: 15px 100px;
+	padding: 15px 0;
 	text-align: center;
 }
 

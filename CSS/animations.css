@@ -165,8 +165,12 @@ header p {
         display: none;
     }
 }
-.box-a {
+html.cssanimations .box-a { /* this, with the modernizr.js file, will only apply opacity: 0 to web browswers that
+    support CSS animations; the class name 'cssanimations' was discovered using 'inspect element' in the web
+    browser - modernizr scans the browser and inputs classes to be leveraged this way */
     opacity: 0; /* makes it start invisible */
+}
+.box-a {
     -webkit-animation: fadeBounce 1s forwards;
     animation-name: fadeBounce; /* assigns the below-programmed animation */
     animation-duration: 1s; /* time between 0% and 100% animation */

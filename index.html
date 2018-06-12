@@ -5,12 +5,15 @@
 		<title>SUR Home</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="mainStyle.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/declarativeToggle.js"></script>
 	</head>
 
 	<body>
 		<div class="container group">
 			<div class="main-area">
 				<h1 class="headline"><span>s</span>ocially <span>u</span>nredeeming</h1>
+				<span data-toggle-target=".site-nav" class="toggle-btn menu-btn">Menu</span>
 				<nav class="site-nav group">
 					<ul class="nav-buttons">
 						<li><a href="oops.html">Prev</a></li>
@@ -26,14 +29,17 @@
 						<h2>Let's focus on the math, people</h2>
 						<img src="images/fitness-blog.jpg">
 						<!-- blog entry pic here -->
-						<p>As this is my first posting, I want to preface the following rant by
-								pointing out that this page is not meant to serve as a fitness blog or food
-								blog or otherwise. For that matter, I never wanted to have a blog. That
-								said, for professional reasons, I needed to make a website, so despite the
-								fact that most people create a website so they can have a blog, I'm creating
-								a blog so that I can have a website. The topics of this blog, of sorts, will
-								vary, and it just so happens the first one is about food, fitness, and
-								health. With that out of the way, here we go.</p>
+						<div class="main-text-body">
+							<p>As this is my first posting, I want to preface the following rant by
+							pointing out that this page is not meant to serve as a fitness blog or food
+							blog or otherwise. For that matter, I never wanted to have a blog. That
+							said, for professional reasons, I needed to make a website, so despite the
+							fact that most people create a website so they can have a blog, I'm creating
+							a blog so that I can have a website. The topics of this blog, of sorts, will
+							vary, and it just so happens the first one is about food, fitness, and
+							health. With that out of the way, here we go.</p><span data-toggle-target=".full-text" 
+							class="toggle-btn read-more" data-toggle-text="Hide full text...">Read more...</span></p>
+							<div class="full-text">
 								<p>Have you heard of that new diet? The one that's supposed to be super easy
 								to follow? The one that works like magic? Right, I'm sure you have - and I'm
 								sure, depending on who you ask, the diet in questions is always different.
@@ -143,12 +149,25 @@
 								ago (keep in mind the workout routine is figured into my weekly calorie goals). 
 								Since starting this new lifestyle, I’ve lost 70lbs and am currently weighing in at 
 								175. Anyhow, I’ll end this now, but just needed to get the all off my chest.</p>
-						<footer class="blog-foot">
-							Posted by Jacob Kelley on 31 May 2018
-						</footer>
+							</div>
+							<footer class="blog-foot">
+								Posted by Jacob Kelley on 31 May 2018
+							</footer>
+						</div>
 					</div><!-- /blog-entry -->
 					<div class="about-me">
 						<h2>Mini Rant</h2>
+						<p>At some point, I fully plan to post mini rants in this space. At this point in time; 
+							however, I am focusing on building the site and trying to foster interest to 
+							contribute from others. So, if you're reading this, keep in mind that I'd be more than 
+							happy to share your party stories, blogs, mini rants, or comics. Simply email me your 
+							material at Socially.Unredeeming.Stories@gmail.com, include your desired real or pen 
+							name, and let me know if you'd like the content posted as-is or if you'd like me to edit 
+							the content for publication.</p>
+						</p>
+						<footer class="blog-foot">
+							Posted by Jacob Kelley on 31 May 2018
+						</footer>
 					</div><!-- /about-me -->
 				</div><!-- /contentArea -->
 			</div><!-- /main-area -->
@@ -168,8 +187,10 @@
 					frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 				<div class="av-gal">
-					<img src="images/IMG_1736.JPG" width="100%" height="auto">
-					<p class="image-caption">Party Stories</p>
+					<a href="party-stories.html">
+						<img src="images/party-stories.jpg" width="100%" height="auto">
+						<p class="image-caption">Party Stories</p>
+					</a>
 				</div>
 				<div class="comic-gal">
 					<a href="SUR-comics.html">
