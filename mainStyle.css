@@ -225,6 +225,10 @@ footer {
 .sidebar p {
 	margin: 0;
 }
+.video p,
+.music p {
+	margin-bottom: 5px;
+}
 .sidebar h2 {
 	margin-bottom: 5px;
 	margin-top: 5px;
@@ -238,7 +242,7 @@ footer {
 	box-sizing: border-box;
 }
 img {
-	image-orientation: from-image;
+	display: block;
 }
 .av-gal,
 .comic-gal {
