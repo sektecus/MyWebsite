@@ -3,7 +3,7 @@
 html {
 	background-color: #4f5763;
 	font-family: arial, sans-serif;
-	font-size 105%;
+	font-size: 105%;
 }
 
 .container {
@@ -215,12 +215,28 @@ footer {
 	background-color: #ECECEC;
 	padding: 20px 33px;
 	box-sizing: border-box;
+	margin-top: 10px;
 }
 .video {
 	background-color: #ECECEC;
 	padding: 20px 33px;
 	box-sizing: border-box;
 	margin-top: 10px;
+}
+.selector {
+	background-color: #ECECEC;
+	padding: 20px 33px;
+	box-sizing: border-box;
+	margin-top: 10px;
+}
+.selector select {
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+	margin-top: 10px;
+	height: 30px;
+	border: 1px solid #4f5763;
+	outline: none;
 }
 .sidebar p {
 	margin: 0;

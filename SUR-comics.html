@@ -4,8 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> SUR Comics</title>
         <link rel="stylesheet" href="CSS/comics.css">
+        <link rel="stylesheet" href="CSS/lightbox.css">
         <script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/declarativeToggle.js"></script>
+        <script type="text/javascript" src="js/declarativeToggle.js"></script>
+        <script type="text/javascript" src="js/lightbox.min.js"></script>
     </head>
 
     <body>
@@ -30,58 +32,53 @@
                 <div class="row">
                     <div class="col col-md-9">
                         <h2>Gallery:</h2>
-                        <div class="row">
-                            <div class="col col-md-6 col-lg-4">
-                                <div class="box-a comic-gal">
-                                    <a href="iknowthelaw.html">
-                                        <img src="images/comic-thumb.jpg">
-                                        <div class="image-caption">
-                                            <p>I KNOW THE LAW!</p>
-                                        </div>
-                                    </a>
-                                </div><!-- /box-a -->
-                            </div><!-- /col col-sm-6 col-lg-3 -->
-                            <div class="col col-md-6 col-lg-4">
-                                <div class="box-a comic-gal">
-                                    <a href="iknowthelaw.html">
-                                        <img src="images/comic-thumb.jpg">
-                                        <div class="image-caption">
-                                            <p>I KNOW THE LAW!</p>
-                                        </div>
-                                    </a>
-                                </div><!-- /box-a -->
-                            </div><!-- /col col-sm-6 col-lg-3 -->
-                            <div class="col col-md-6 col-lg-4">
-                                <div class="box-a comic-gal">
-                                    <a href="iknowthelaw.html">
-                                        <img src="images/comic-thumb.jpg">
-                                        <div class="image-caption">
-                                            <p>I KNOW THE LAW!</p>
-                                        </div>
-                                    </a>
-                                </div><!-- /box-a -->
-                            </div><!-- /col col-sm-6 col-lg-3 -->
-                            <div class="col col-md-6 col-lg-4">
-                                <div class="box-a comic-gal">
-                                    <a href="iknowthelaw.html">
-                                        <img src="images/comic-thumb.jpg">
-                                        <div class="image-caption">
-                                            <p>I KNOW THE LAW!</p>
-                                        </div>
-                                    </a>
-                                </div><!-- /box-a -->
-                            </div><!-- /col col-sm-6 col-lg-3 -->
-                        </div><!-- /row -->
-                    </div><!-- /col col-md-8 -->
+                        <div class="thumbnails group">
+                            <a href="images/comic-thumb.jpg" data-lightbox="gallery" data-title="I Know the Law!"><img src="images/comic-thumb.jpg" alt="I Know the Law"></a>
+                            <a href="images/solid-beav.jpg" data-lightbox="gallery" data-title="Solid Beav"><img src="images/solid-beav.jpg" alt="Solid Beav"></a>
+                            <a href="images/pet-store.jpg" data-lightbox="gallery" data-title="Do Not Feed the Ferrets"><img src="images/pet-store.jpg" alt="Pet Store"></a>
+                            <a href="images/junkie.jpg" data-lightbox="gallery" data-title="Fuckin' Junkie"><img src="images/junkie.jpg" alt="Junkie"></a>
+                            <a href="images/jake-comic.jpg" data-lightbox="gallery" data-title="Better Than Alexander"><img src="images/jake-comic.jpg" alt="Alexander"></a>
+                            <a href="images/lotr.jpg" data-lightbox="gallery" data-title="This One's a Skipper"><img src="images/lotr.jpg" alt="Skipper"></a>
+                            <a href="images/world-of-halo.jpg" data-lightbox="gallery" data-title="Loot Paralysis"><img src="images/world-of-halo.jpg" alt="Loot Paralysis"></a>
+                            <a href="images/xmas.jpg" data-lightbox="gallery" data-title="Wishful Thinking"><img src="images/xmas.jpg" alt="Wishful Thinking"></a>
+                            <a href="images/scientist.jpg" data-lightbox="gallery" data-title="The Value of Placenta"><img src="images/scientist.jpg" alt="Placenta"></a>
+                            <a href="images/pack-mule.jpg" data-lightbox="gallery" data-title="Pack Mule"><img src="images/pack-mule.jpg" alt="Packmule"></a>
+                            <a href="images/doctor.jpg" data-lightbox="gallery" data-title="You're Not My Doctor"><img src="images/doctor.jpg" alt="Doctor"></a>
+                            <a href="images/dust-mite.jpg" data-lightbox="gallery" data-title="Selective Hearing"><img src="images/dust-mite.jpg" alt="Selective Hearing"></a>
+                            <a href="images/asshole.jpg" data-lightbox="gallery" data-title="Something Special"><img src="images/asshole.jpg" alt="Special"></a>
+                            <a href="images/bagel.jpg" data-lightbox="gallery" data-title="Peak Precision"><img src="images/bagel.jpg" alt="Precision"></a>
+                            <a href="images/road-rage.jpg" data-lightbox="gallery" data-title="Road Rage"><img src="images/road-rage.jpg" alt="Road Rage"></a>
+                            <a href="images/peripheral.jpg" data-lightbox="gallery" data-title="Useless Peripheral"><img src="images/peripheral.jpg" alt="Peripheral"></a>
+                            <a href="images/bucket.jpg" data-lightbox="gallery" data-title="+1 to Probably a Dumbass"><img src="images/bucket.jpg" alt="Bucket"></a>
+                            <a href="images/wow.jpg" data-lightbox="gallery" data-title="World of Madagascar"><img src="images/wow.jpg" alt="Madagascar"></a>
+                            <a href="images/hotline.jpg" data-lightbox="gallery" data-title="Self Help"><img src="images/hotline.jpg" alt="Self Help"></a>
+                            <a href="images/politics.jpg" data-lightbox="gallery" data-title="Politics"><img src="images/politics.jpg" alt="Politics"></a>
+                            <a href="images/caricatures.jpg" data-lightbox="gallery" data-title="Caricatures"><img src="images/caricatures.jpg" alt="Caricatures"></a>
+                            <a href="images/gaming.jpg" data-lightbox="gallery" data-title="Gotta Make 'Em Roll Dice"><img src="images/gaming.jpg" alt="Gaming"></a>
+                            <a href="images/fable.jpg" data-lightbox="gallery" data-title="That's Quite Nice, That Is"><img src="images/fable.jpg" alt="Fable"></a>
+                            <a href="images/friends.jpg" data-lightbox="gallery" data-title="We May Have a Problem"><img src="images/friends.jpg" alt="Friends"></a>
+                            <a href="images/new-years.jpg" data-lightbox="gallery" data-title="Nope, Everything Still Sucks"><img src="images/new-years.jpg" alt="New Years"></a>
+                            <a href="images/hands.jpg" data-lightbox="gallery" data-title="The Price of Companionship"><img src="images/hands.jpg" alt="Hands"></a>
+                            <a href="images/xbl.jpg" data-lightbox="gallery" data-title="Communication Error"><img src="images/xbl.jpg" alt="Communication"></a>
+                            <a href="images/who-is-susan.jpg" data-lightbox="gallery" data-title="What Fiance"><img src="images/who-is-susan.jpg" alt="What Fiance"></a>
+                            <a href="images/l33t.jpg" data-lightbox="gallery" data-title="l33t"><img src="images/l33t.jpg" alt="l33t"></a>
+                            <a href="images/ug.jpg" data-lightbox="gallery" data-title="They're Definitely Doing it Wrong"><img src="images/ug.jpg" alt="Ug"></a>
+                            <a href="images/penis-hand.jpg" data-lightbox="gallery" data-title="What, Exactly, Are You Accusing Me Of?"><img src="images/penis-hand.jpg" alt="Penis Hand"></a>
+                            <a href="images/minotaur.jpg" data-lightbox="gallery" data-title="Minotaur"><img src="images/minotaur.jpg" alt="Minotaur"></a>
+                            <a href="images/georgebot.jpg" data-lightbox="gallery" data-title="Hack Pt. 1"><img src="images/georgebot.jpg" alt="Hack 1"></a>
+                            <a href="images/georgebot2.jpg" data-lightbox="gallery" data-title="Hack Pt. 2"><img src="images/georgebot2.jpg" alt="Hack 2"></a>
+                            <a href="images/lucas.jpg" data-lightbox="gallery" data-title="Hack Pt. 3"><img src="images/lucas.jpg" alt="Hack 3"></a>
+                        </div>
+                    </div><!-- /col col-md-9 -->
                     <div class="col col-md-3 sidebar">
-                        <h3>Stories by Date:</h3>
+                        <h3>All Comics:</h3>
                         <ul class="story-list">
-                            <li><a href="iknowthelaw.html">I KNOW THE LAW!</a></li>
-                            <li><a href="oops.html">31 May 2018: Story 2</a></li>
-                            <li><a href="oops.html">31 May 2018: Story 3</a></li>
-                            <li><a href="oops.html">31 May 2018: Story 4</a></li>
+                            <li><a href="images/comic-thumb.jpg">I KNOW THE LAW!</a></li>
+                            <li><a href="images/solid-beav.jpg">Solid Beav</a></li>
+                            <li><a href="images/pet-store.jpg">Do Not Feed the Ferrets</a></li>
+                            <li><a href="images/junkie.jpg">Fuckin' Junkie</a></li>
                         </ul>
-                    </div><!-- /col col-md-4 sidebar -->
+                    </div><!-- /col col-md-3 sidebar -->
                 </div><!-- /row -->
             </div><!-- /container -->
         </div><!-- /content-area group section -->

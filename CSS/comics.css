@@ -170,6 +170,41 @@ header p {
 
 /* END SITE NAVIGATION */
 
+/* THUMBNAIL STYLES */
+
+.thumbnails {
+    margin-right: -15px; /* this counters the last pic on the right's padding */
+}
+.thumbnails a {
+    float: left;
+    width: 25%;
+    padding-right: 15px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    max-height: 150px;
+    overflow: hidden;
+}
+@media screen and (max-width: 700px) {
+    .thumbnails a {
+        width: 50%;
+    }
+}
+.thumbnails img {
+    display: block; /* this gets rid of default page formatting for these images */
+    transition: all .2s ease-in-out;
+}
+.thumbnails:hover img {
+    opacity: .6;
+    transform: scale(.92);
+}
+.thumbnails img:hover {
+    opacity: 1;
+    transform: scale(1) rotate(2deg);
+    box-shadow: 0 0 7px rgba(0, 0, 0, .5);
+}
+
+/* END THUMBNAIL STYLES */
+
 /* CONTENT */
 
 .content-area {

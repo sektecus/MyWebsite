@@ -77,8 +77,124 @@ header p {
     font-size: 90%;
     margin: 0;
 }
+.story-image {
+    width: 30%;
+    float: left;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
 
 /* END MAIN COLUMN */
+
+/* SLIDESHOW */
+
+.slideshow {
+    margin-bottom: 40px;
+}
+.slide {
+    width: 100%;
+    position: relative;
+}
+.slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.slide-description {
+    position: absolute;
+    bottom: 0;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 767px) {
+    .slide-description {
+        position: static; /* negates the position: absolute; attribute */
+        background-color: #000;
+    }
+}
+.slide-description h3,
+.slide-description p {
+    margin: 0;
+}
+.cycle-pager {
+    position: absolute;
+    top: 20px;
+    z-index: 1003;
+    width: 100%;
+    text-align: center;
+}
+.cycle-pager span { /* when you inspect element on the markers, you find that they're spans */
+    text-indent: -9000px; /* makes sure the bullets don't show */
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%; /* makes each marker a circl */
+    background-color: #FFF;
+    margin: 0 4px; /* adds horizontal margins */
+    cursor: pointer;
+}
+.cycle-pager .cycle-pager-active {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+/* END SLIDESHOW */
+
+/* PREV AND NEXT */
+
+.cycle-prev,
+.cycle-next {
+    position: absolute;
+    top: 30%;
+    background-color: rgba(0, 0, 0, .5);
+    color: #FFF;
+    padding: 1px 10px;
+    display: block;
+    cursor: pointer;
+    font-size: 130%;
+    z-index: 1000; /* ensures it's on top */ 
+    opacity: 0;
+    transition: opacity .5s;
+}
+.cycle-next {
+    right: 0;
+}
+.slideshow:hover .cycle-next,
+.slideshow:hover .cycle-prev {
+    opacity: 1;
+}
+@media screen and (max-width: 700px) {
+    .cycle-prev,
+    .cycle-next {
+        opacity: 1;
+        font-size: 150%;
+    }
+}
+
+/* END PREV AND NEXT */
+
+/* BUTTON A STYLE */
+
+.btn-a {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #999;
+    color: #FFF;
+    font-size: 84%;
+}
+.btn-p {
+    padding-top: 20px;
+}
+.btn-a:hover {
+    background-color: #FFF;
+    color: #999;
+}
+
+/* END BUTTON A STYLE */
 
 /* HIDE/SHOW BUTTON */
 
