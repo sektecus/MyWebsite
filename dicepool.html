@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dice Pool</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/dicepool.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/dicepool.js"></script>
+    </head>
+
+    <body>
+        <header class="banner-area section">
+            <div class="container group">
+                <div class="headline-box">
+                    <h1 class="headline"><span>s</span>ocially <span>u</span>nredeeming:</h1>
+                    <p class="sub-head">Dice Pool!</p>
+                </div>
+                
+                <select class="nav" onchange="location = this.value;">
+                    <option>Site Navigation</option>
+                    <option value="index.html">SUR Main Page</option>
+                    <option value="SUR-comics.html">Comics</option>
+                    <option value="party-stories.html">Party Stories</option>
+                    <option value="contact.html">Contact</option>
+                </select>
+            </div>
+        </header>
+        <div class="content-area group section">
+            <div class="container">
+                
+                <div class="choose">
+                    <p>Choose your dice pool</p>
+                    <p class="add-buttons">
+                        <button class="d3-add">D3</button>
+                        <button class="d4-add">D4</button>
+                        <button class="d6-add">D6</button>
+                        <button class="d8-add">D8</button>
+                        <button class="d10-add">D10</button>
+                        <button class="d12-add">D12</button>
+                        <button class="d20-add">D20</button>
+                        <button class="d100-add">D100</button>
+                    </p>
+                </div>    
+                <div class="pool-display">
+                    <p>Current Pool<button class="roll-dice">ROLL!</button><button class="clearPage">Clear</button></p>
+                </div>
+                <div class="row pool" id="dicePoolTarget">
+                    <div class="col dice">
+                        
+                        <!--
+                        <div class="added-dice" id="d6__0">D6: </div>
+                        -->
+                    </div>
+                    <!--
+                    <div class="col col-xs-4 result">
+                        
+                        <div class="added-result" id="value__0">5</div>
+                        
+                    </div>
+                    -->
+                    
+                </div>
+                <div class="col totalSum" id="sum"></div>
+            </div>
+        </div>
+    </body>
+</html>
