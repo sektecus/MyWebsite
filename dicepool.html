@@ -28,7 +28,7 @@
         <div class="content-area group section">
             <div class="container">
                 
-                <div class="choose">
+                <div class="col choose">
                     <p>Choose your dice pool</p>
                     <p class="add-buttons">
                         <button class="d3-add">D3</button>
@@ -39,25 +39,26 @@
                         <button class="d12-add">D12</button>
                         <button class="d20-add">D20</button>
                         <button class="d100-add">D100</button>
+                        <button class="dx-add">D</button><input type="text" class="user" id="user" placeholder=0>
                     </p>
                 </div>    
-                <div class="pool-display">
-                    <p>Current Pool<button class="roll-dice">ROLL!</button><button class="clearPage">Clear</button></p>
+                <div class="col pool-display">
+                    <button class="roll-dice">Roll Dice</button><button class="clearPage">Clear All</button>
+                    <button class="bank-total">Bank (Clear)</button><button class="save-total">Bank (Save)</button>
+                    <p>Current Pool&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbspBanked Values</p>
                 </div>
                 <div class="row pool" id="dicePoolTarget">
-                    <div class="col dice">
-                        
+                    <div class="col col-xs-6 dice">
+                        <p class="dice-banner">Click dice buttons (above) to add them to your pool</p>
                         <!--
                         <div class="added-dice" id="d6__0">D6: </div>
                         -->
                     </div>
-                    <!--
-                    <div class="col col-xs-4 result">
-                        
-                        <div class="added-result" id="value__0">5</div>
-                        
+                    
+                    <div class="col col-xs-6 locked">
+                        <p class="locked-banner">Click "Bank" button (above) to store your current total</p>
                     </div>
-                    -->
+                    
                     
                 </div>
                 <div class="col totalSum" id="sum"></div>

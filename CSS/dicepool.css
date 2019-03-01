@@ -62,6 +62,7 @@ html {
 button {
     margin-right: 10px;
     margin-bottom: 20px;
+    margin-left: 10px;
     color: #FFF;
     font-size: 90%;
     background-color: #4f5763;
@@ -70,9 +71,27 @@ button {
 .pool-display,
 .result,
 .choose,
-.dice,
 .totalSum {
     text-align: center;
+}
+.dice {
+    text-align: right;
+}
+.user {
+    width: 40px;
+    height:30px;
+    margin-left: 0;
+}
+.dx-add {
+    margin-right: 0;
+}
+.dice-banner,
+.locked-banner {
+    margin-bottom: 10px;
+}
+.container button:hover {
+    background-color: #FFF;
+    color: #4f5763;
 }
 .totalSum {
     margin-top: 20px;

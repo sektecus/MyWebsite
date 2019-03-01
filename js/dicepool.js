@@ -26,49 +26,46 @@ let resultController = (function() {
         results: []
     }
 
+    let bank = [];
+
 // Sum dice totals
     return {
         sum: function() {
-            let sum = calcSum(data.results);
+            let sum = calcSum(bank) + calcSum(data.results);
             return sum;
         },
 
-        roll: function() {
-            
-            data.results = [];
-
-            for(let i = 0; i < data.type.length; i++) {
-                if(data.type[i] === 'D3') {
-                    data.results[i] = Math.floor(Math.random() * 3) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D4') {
-                    data.results[i] = Math.floor(Math.random() * 4) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D6') {
-                    data.results[i] = Math.floor(Math.random() * 6) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D8') {
-                    data.results[i] = Math.floor(Math.random() * 8) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D10') {
-                    data.results[i] = Math.floor(Math.random() * 10) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D12') {
-                    data.results[i] = Math.floor(Math.random() * 12) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D20') {
-                    data.results[i] = Math.floor(Math.random() * 20) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else if(data.type[i] === 'D100') {
-                    data.results[i] = Math.floor(Math.random() * 100) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
-                }else {
-                    data.results[i] = 0;
-                }
-            }
+        sumPool: function() {
+            let pool = calcSum(data.results);
+            return pool;
         },
 
-        addDiceItem: function(type) {
+        sumBank: function() {
+            let bankTotal = calcSum(bank);
+            return bankTotal;
+        },
+
+        storeBank: function(total) {
+            bank.push(total);
+        },
+
+        roll: function() {
+            data.results = [];
+            
+            for(let i = 0; i < data.type.length; i++) {
+                if(data.type[i] === 'dx') {
+                    data.results[i] = 0;
+                }else {
+                    let itemID, num;
+                    itemID = data.type[i]; 
+                    num = parseInt(itemID.split('D').pop());
+                    data.results[i] = Math.floor(Math.random() * num) + 1;
+                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+                }
+           }
+        },
+
+        addDiceItem: function(type, user) {
             let newItem, ID, value;
 
             if(data.id.length > 0) {
@@ -93,6 +90,8 @@ let resultController = (function() {
                 value = Math.floor(Math.random() * 20) + 1;
             }else if(type === 'D100') {
                 value = Math.floor(Math.random() * 100) + 1;
+            }else {
+                value = Math.floor(Math.random() * user) + 1;
             }
 
             newItem = new dicePoolItem(type, ID, value);
@@ -103,39 +102,24 @@ let resultController = (function() {
         },
 
         deleteData: function(type, ID) {
-            
             let ids1, ids2, ids3, index;
-
             ids1 = data.id.map(function(current) {
                 return current;
             });
-            //console.log(ids1);
-            /*
-            ids2 = data.results.map(function(current) {
-                return current.ID;
-            });
-            ids3 = data.type.map(function(current) {
-                return current.ID;
-            });
-            */
             index1 = ids1.indexOf(ID);
-            //console.log(index1);
-            //index2 = ids2.indexOf(ID);
-            //index3 = ids3.indexOf(ID);
-            /*
-            data.id.splice(index1, 1);
-            data.results.splice(index1, 1);
-            data.type.splice(index1, 1);
-            */
-           data.id[index1] = 'x';
-           data.results[index1] = 0;
-           data.type[index1]= 'dx';
+            data.id[index1] = 'x';
+            data.results[index1] = 0;
+            data.type[index1]= 'dx';
         },
 
         clearData: function() {
             data.id = [];
             data.results = [];
             data.type = [];
+        },
+        
+        clearBank: function() {
+            bank = [];
         }
     }
 
@@ -159,26 +143,38 @@ let UIController = (function() {
         d12Add: '.d12-add',
         d20Add: '.d20-add',
         d100Add: '.d100-add',
+        dxAdd: '.dx-add',
         diceColumn: '.dice',
-        resultColumn: '.result',
+        lockedColumn: '.locked',
         rollBtn: '.roll-dice',
         sumID: 'sum',
         container: '.pool',
         clear: '.clearPage',
-        poolTarget: 'dicePoolTarget'
+        poolTarget: 'dicePoolTarget',
+        deleteDie: 'deleteDie',
+        bank: '.bank-total',
+        save: '.save-total'
     };
 
 
     return {
         addDice: function(obj){
+            $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%">%type% ----> <span class="added-result" id="value__%id%">%value%</span></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type% ----> <span class="added-result" id="value__%id%">%value%</span></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
+            //html = html.replace('%id%', obj.id);
             html = html.replace('%type%', obj.type);
             html = html.replace('%type%', obj.type);
             html = html.replace('%value%', obj.value);
             return document.querySelector(element).insertAdjacentHTML('beforeend', html)
+        },
+        bankTotal: function(total) {
+            $('.locked-banner').empty();
+            let element = DOMstrings.lockedColumn;
+            let html = `<div class="added-total">${total}</div>`;
+            return document.querySelector(element).insertAdjacentHTML('beforeend', html);
         },
         /*
         addResult: function(obj){
@@ -190,9 +186,9 @@ let UIController = (function() {
             return document.querySelector(element).insertAdjacentHTML('beforeend', html)
         },
         */
-        displayRoll: function(sum) {
+        displayRoll: function(sumPool, sumBank) {
             let element = DOMstrings.sumID   
-            return document.getElementById(element).textContent = `Total: ${sum}`;
+            return document.getElementById(element).textContent = `${sumPool} <= Pool Total | Bank Total => ${sumBank}`;
         },
 
         deleteDice: function(selectorID) {
@@ -202,7 +198,17 @@ let UIController = (function() {
 
         clearDice: function() {
             //console.log('Enter code to clear page here');
-            $('.dice').empty();
+            let element = DOMstrings.diceColumn;
+            $(element).empty();
+            let html = '<p class="dice-banner">Click dice buttons (above) to add them to your pool</p>'
+            document.querySelector(element).insertAdjacentHTML('beforeend', html);
+        },
+
+        clearBank: function() {
+            let element = DOMstrings.lockedColumn;
+            $(element).empty();
+            let html = '<p class="locked-banner">Click "Bank" button (above) to store your current total</p>'
+            document.querySelector(element).insertAdjacentHTML('beforeend', html);
         },
 
         getDOMstrings: function() {
@@ -235,9 +241,24 @@ let controller = (function(resultCtrl, UICtrl) {
             document.querySelector(DOM.rollBtn).addEventListener('click', ctrlRoll);
             document.querySelector(DOM.container).addEventListener('click', ctrlDel);
             document.querySelector(DOM.clear).addEventListener('click', ctrlClear);
+            document.querySelector(DOM.bank).addEventListener('click', ctrlBank);
+            document.querySelector(DOM.save).addEventListener('click', ctrlSave);
+            document.querySelector(DOM.dxAdd).addEventListener('click', ctrlAddDx);
         }
+        
     };
-
+    let ctrlAddDx = function() {
+        let input = document.querySelector('#user').value;
+        if(input) {
+            input = input;
+        }else {
+            input = 0;
+        }
+        let type = `D${input}`;
+        let newDie = resultCtrl.addDiceItem(type, input);
+        UICtrl.addDice(newDie);
+        ctrlSum();
+    }
     let ctrlAddD3 = function() {
         let type = 'D3';
         let newDie = resultCtrl.addDiceItem(type);
@@ -296,8 +317,10 @@ let controller = (function(resultCtrl, UICtrl) {
     };
 
     let ctrlSum = function(){
-        let sum = resultCtrl.sum();
-        UICtrl.displayRoll(sum);
+        let sum = resultCtrl.sumPool();
+        let sumBank = resultCtrl.sumBank();
+        //let sumAll = resultCtrl.sum();
+        UICtrl.displayRoll(sum,sumBank);
     };
 
     let ctrlRoll = function() {
@@ -307,11 +330,12 @@ let controller = (function(resultCtrl, UICtrl) {
 
     let ctrlDel = function(event) {
         let itemID, splitID, type, ID;
-
-        itemID = event.target.id;
-        //console.log(itemID);
+        //console.log('old code');
+        //type = itemType;
+        itemID = event.target.parentNode.id;
+        console.log(itemID);
         //alert(`The id of the element you click is ${itemID}`);
-
+        
         if(itemID) {
             splitID = itemID.split('__'); 
             //console.log(splitID);
@@ -326,9 +350,27 @@ let controller = (function(resultCtrl, UICtrl) {
         
     };
 
+    let ctrlBank = function() {
+        let total = resultCtrl.sumPool();
+        UICtrl.bankTotal(total);
+        UICtrl.clearDice();
+        resultCtrl.clearData();
+        resultCtrl.storeBank(total);
+        ctrlSum();
+    };
+
+    let ctrlSave = function() {
+        let total = resultCtrl.sumPool();
+        UICtrl.bankTotal(total);
+        resultCtrl.storeBank(total);
+        ctrlSum();
+    }
+
     let ctrlClear = function() {
         UICtrl.clearDice();
         resultCtrl.clearData();
+        UICtrl.clearBank();
+        resultCtrl.clearBank();
         ctrlSum();
         
     };
@@ -367,4 +409,43 @@ function d6Add () {
     document.querySelector('.dice').insertAdjacentHTML('beforeend', '<div class="added-dice" id="dice__%id%">D6: </div>');
     document.querySelector('.result').insertAdjacentHTML('beforeend', '<div class="added-result" id="value__%id%">5</div>');
 };
+*/
+
+//Old Random Num Roll Code
+/*
+for(let i = 0; i < data.type.length; i++) {
+    if(data.type[i] === 'D3') {
+        data.results[i] = Math.floor(Math.random() * 3) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D4') {
+        data.results[i] = Math.floor(Math.random() * 4) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D6') {
+        data.results[i] = Math.floor(Math.random() * 6) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D8') {
+        data.results[i] = Math.floor(Math.random() * 8) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D10') {
+        data.results[i] = Math.floor(Math.random() * 10) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D12') {
+        data.results[i] = Math.floor(Math.random() * 12) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D20') {
+        data.results[i] = Math.floor(Math.random() * 20) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'D100') {
+        data.results[i] = Math.floor(Math.random() * 100) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }else if(data.type[i] === 'dx') {
+        data.results[i] = 0;
+    }else {
+        let itemID, num;
+        itemID = data.type[i]; 
+        num = parseInt(itemID.split('D').pop());
+        data.results[i] = Math.floor(Math.random() * num) + 1;
+        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+    }
+}
 */
