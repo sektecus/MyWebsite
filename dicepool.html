@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="CSS/dicepool.css">
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/dicepool.js"></script>
+        <script type="text/javascript" src="js/declarativeToggle.js"></script>
     </head>
 
     <body>
@@ -29,7 +30,19 @@
             <div class="container">
                 
                 <div class="col choose">
-                    <p>Choose your dice pool</p>
+                    <div class="main-text-body">
+                        <p>Welcom to Dice Pool! For full instructions, click below.</p>
+                            <span data-toggle-target=".full-text" class="toggle-btn read-more" data-toggle-text="Hide instructions...">Click for full instructions</span>
+                        <div class="full-text">
+                            <p>Welcome, again, to Die Pool. This app is meant to provide you, the user, an easy way to simulate dice rolls on the go. You can use this app for tabletop gaming, Yahtzee, or to help you make a decision with which you're struggling. To fully utilize this app, read the following:</p>
+                            <p>1) Begin by populating your dice pool. To do this click the buttons below, labeled D3, D4, and so on. Additionally, you may add a custom die by filling in the input field next to the "D" button and then pressing said button.</p>
+                            <p>2) As you add each dice, you will notice they are automatically populated with a random value, between 1 and the value assigned to the die (i.e. D6's value is 6). As dice are added, you'll also notice the Pool Total, at the bottom of the page, will display the total value of all the dice you've added.</p>
+                            <p>3) Once you're satisfied with your pool, you can then re-roll all their values by pressing the "Roll!" button. Additionally you may save your pool total by pressing one of the two bank buttons, explained in the next step.</p>
+                            <p>4) You have two options for banking your pool, "Bank (Clear)" and "Bank (Save)". Both options will save, or bank the total value of your current pool, in the column to the right of the pool. The first option will clear your pool and the second option will not.</p>
+                            <p>5) If you would like to add a modifier to your banked pool values, simply supply the "Mod" input field, found next to the custom die entry, with the modifier value you'd like to apply. This modifier will be added to the pool value, every time you bank a pool.</p>
+                            <p>6) Finally, you may clear the pool and the bank by pressing the "Clear All" button.</p>
+                        </div>
+                    </div>
                     <p class="add-buttons">
                         <button class="d3-add">D3</button>
                         <button class="d4-add">D4</button>
@@ -40,6 +53,7 @@
                         <button class="d20-add">D20</button>
                         <button class="d100-add">D100</button>
                         <button class="dx-add">D</button><input type="text" class="user" id="user" placeholder=0>
+                        <input type="text" class="mod" id="mod" placeholder="Mod">
                     </p>
                 </div>    
                 <div class="col pool-display">
@@ -47,7 +61,7 @@
                     <button class="bank-total">Bank (Clear)</button><button class="save-total">Bank (Save)</button>
                     <p>Current Pool&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbspBanked Values</p>
                 </div>
-                <div class="row pool" id="dicePoolTarget">
+                <div class="row pool">
                     <div class="col col-xs-6 dice">
                         <p class="dice-banner">Click dice buttons (above) to add them to your pool</p>
                         <!--
@@ -64,5 +78,8 @@
                 <div class="col totalSum" id="sum"></div>
             </div>
         </div>
+        <footer class="main-foot">
+            &copy;2019, Sektecus Productions, LLC&trade;
+        </footer>
     </body>
 </html>

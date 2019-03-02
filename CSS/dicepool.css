@@ -11,7 +11,16 @@ html {
     margin: 0 auto;
     overflow: hidden;
 }
-
+footer {
+	font-size: 85%;
+	font-style: italic;
+    color: #999;
+    background-color: #4f5763;
+}
+.main-foot {
+	text-align: center;
+	margin-top: 15px;
+}
 /* End Main Style */
 
 /* Header */
@@ -82,6 +91,11 @@ button {
     height: 30px;
     margin-left: 0;
 }
+.mod {
+    width: 40px;
+    height: 30px;
+    margin-left: 12px;
+}
 .dx-add {
     margin-right: 0;
 }
@@ -113,6 +127,49 @@ button {
 }
 
 /* End Main Content */
+
+/* HIDE/SHOW BUTTON */
+
+.toggle-btn {
+	display: none;
+}
+@media screen and (max-width: 700px) {
+    .toggle-btn-visible {
+        display: block;
+	}
+	.menu-btn {
+		margin-top: 10px;
+		margin-bottom: 0;
+		background-color: #4f5763;
+		color: #FFF;
+		font-size: 150%;
+		padding: 5px 10px;
+	}
+    .toggle-target-hidden {
+        display: none;
+    }
+    .toggle-target-expanded {
+        display: block;
+    }
+}
+.main-text-body .toggle-btn-visible {
+    display: block;
+}
+.main-text-body .toggle-target-hidden {
+    display: none;
+}
+.main-text-body .toggle-target-expanded {
+    display: block;
+}
+.read-more {
+    text-decoration: underline;
+    color: blue;
+}
+.read-more:hover {
+    text-decoration: none;
+}
+
+/* END HIDE/SHOW BUTTON */
 
 /* GRID */
 

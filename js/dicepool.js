@@ -207,7 +207,7 @@ let UIController = (function() {
         clearBank: function() {
             let element = DOMstrings.lockedColumn;
             $(element).empty();
-            let html = '<p class="locked-banner">Click "Bank" button (above) to store your current total</p>'
+            let html = '<p class="locked-banner">Click "Bank" buttons (above) to store your current total</p>'
             document.querySelector(element).insertAdjacentHTML('beforeend', html);
         },
 
@@ -351,7 +351,15 @@ let controller = (function(resultCtrl, UICtrl) {
     };
 
     let ctrlBank = function() {
-        let total = resultCtrl.sumPool();
+        let pool = resultCtrl.sumPool();
+        let input = document.querySelector('#mod').value;
+        if(input) {
+            input = input;
+        }else {
+            input = 0;
+        }
+        let n = parseInt(input);
+        let total = pool + n;
         UICtrl.bankTotal(total);
         UICtrl.clearDice();
         resultCtrl.clearData();
@@ -360,7 +368,15 @@ let controller = (function(resultCtrl, UICtrl) {
     };
 
     let ctrlSave = function() {
-        let total = resultCtrl.sumPool();
+        let pool = resultCtrl.sumPool();
+        let input = document.querySelector('#mod').value;
+        if(input) {
+            input = input;
+        }else {
+            input = 0;
+        }
+        let n = parseInt(input);
+        let total = pool + n;
         UICtrl.bankTotal(total);
         resultCtrl.storeBank(total);
         ctrlSum();
