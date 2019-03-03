@@ -249,71 +249,69 @@ let controller = (function(resultCtrl, UICtrl) {
     };
     let ctrlAddDx = function() {
         let input = document.querySelector('#user').value;
+        let qty = document.querySelector('#qty').value;
         if(input) {
             input = input;
         }else {
             input = 0;
         }
-        let type = `D${input}`;
-        let newDie = resultCtrl.addDiceItem(type, input);
-        UICtrl.addDice(newDie);
-        ctrlSum();
+        if(qty) {
+            qty = qty;
+        }else {
+            qty = 1;
+        }
+        for(let i = 0; i<qty; i++) {
+            let type = `D${input}`;
+            let newDie = resultCtrl.addDiceItem(type, input);
+            UICtrl.addDice(newDie);
+            ctrlSum();
+        }
     }
+    let genAdd = function(type) {
+        let qty = document.querySelector('#qty').value;
+        if(qty) {
+            qty = qty;
+        }else {
+            qty = 1;
+        }
+        for(let i = 0; i<qty; i++) {
+            let newDie = resultCtrl.addDiceItem(type);
+            UICtrl.addDice(newDie);
+            //UICtrl.addResult(newDie);
+            ctrlSum();
+        }
+    };
     let ctrlAddD3 = function() {
         let type = 'D3';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD4 = function() {
         let type = 'D4';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD6 = function() {
         let type = 'D6';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD8 = function() {
         let type = 'D8';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD10 = function() {
         let type = 'D10';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD12 = function() {
         let type = 'D12';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD20 = function() {
         let type = 'D20';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
     let ctrlAddD100 = function() {
         let type = 'D100';
-        let newDie = resultCtrl.addDiceItem(type);
-        UICtrl.addDice(newDie);
-        //UICtrl.addResult(newDie);
-        ctrlSum();
+        genAdd(type);
     };
 
     let ctrlSum = function(){
@@ -464,4 +462,64 @@ for(let i = 0; i < data.type.length; i++) {
         document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
     }
 }
+*/
+
+//Old Add Die Code, pre genAdd function
+/*
+let ctrlAddD3 = function() {
+    let type = 'D3';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD4 = function() {
+    let type = 'D4';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD6 = function() {
+    let type = 'D6';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD8 = function() {
+    let type = 'D8';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD10 = function() {
+    let type = 'D10';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD12 = function() {
+    let type = 'D12';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD20 = function() {
+    let type = 'D20';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
+let ctrlAddD100 = function() {
+    let type = 'D100';
+    let newDie = resultCtrl.addDiceItem(type);
+    UICtrl.addDice(newDie);
+    //UICtrl.addResult(newDie);
+    ctrlSum();
+};
 */
