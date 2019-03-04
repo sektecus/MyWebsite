@@ -24,6 +24,12 @@ let resultController = (function() {
         type: [],
         id: [],
         results: []
+    };
+
+    let saved = {
+        type: [],
+        id: [],
+        results: []
     }
 
     let bank = [];
@@ -117,6 +123,24 @@ let resultController = (function() {
             data.results = [];
             data.type = [];
         },
+
+        clearSaveData: function() {
+            saved.id = [];
+            saved.results = [];
+            saved.type = [];
+        },
+
+        saveData: function() {
+            saved.id = data.id.slice();
+            saved.results = data.results.slice();
+            saved.type = data.type.slice();
+        },
+
+        recallData: function() {
+            data.id = saved.id;
+            data.results = saved.results;
+            data.type = saved.type;
+        },
         
         clearBank: function() {
             bank = [];
@@ -146,6 +170,7 @@ let UIController = (function() {
         dxAdd: '.dx-add',
         diceColumn: '.dice',
         lockedColumn: '.locked',
+        savedPoolColumn: '.saved-pool',
         rollBtn: '.roll-dice',
         sumID: 'sum',
         container: '.pool',
@@ -153,7 +178,10 @@ let UIController = (function() {
         poolTarget: 'dicePoolTarget',
         deleteDie: 'deleteDie',
         bank: '.bank-total',
-        save: '.save-total'
+        save: '.save-total',
+        savePoolBtn: '.save-pool-btn',
+        recallPoolBtn: '.recall-pool-btn',
+        addedDice: '.added-dice'
     };
 
 
@@ -244,6 +272,8 @@ let controller = (function(resultCtrl, UICtrl) {
             document.querySelector(DOM.bank).addEventListener('click', ctrlBank);
             document.querySelector(DOM.save).addEventListener('click', ctrlSave);
             document.querySelector(DOM.dxAdd).addEventListener('click', ctrlAddDx);
+            document.querySelector(DOM.savePoolBtn).addEventListener('click', ctrlSavePool);
+            document.querySelector(DOM.recallPoolBtn).addEventListener('click', ctrlRecallPool);
         }
         
     };
@@ -387,6 +417,27 @@ let controller = (function(resultCtrl, UICtrl) {
         resultCtrl.clearBank();
         ctrlSum();
         
+    };
+
+    let ctrlSavePool = function() {
+        let DOM = UICtrl.getDOMstrings();
+        $(DOM.savedPoolColumn).empty();
+        $(DOM.addedDice).clone().appendTo(DOM.savedPoolColumn);
+        resultCtrl.clearSaveData();
+        resultCtrl.saveData();
+        alert('Dice Pool Saved!');
+    };
+
+    let ctrlRecallPool = function() {
+        let DOM = UICtrl.getDOMstrings();
+        $(DOM.diceColumn).empty();
+        let html = '<p class="dice-banner"></p>'
+        document.querySelector(DOM.diceColumn).insertAdjacentHTML('beforeend', html);
+        $(DOM.addedDice).clone().appendTo(DOM.diceColumn);
+        resultCtrl.clearData();
+        resultCtrl.recallData();
+        ctrlSum();
+        alert('Dice Pool Recalled Successfully');
     };
 
     return {

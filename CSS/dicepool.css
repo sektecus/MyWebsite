@@ -126,6 +126,13 @@ button {
 .added-result {
     margin-bottom: 21.5px;
 }
+.saved-pool-section {
+    text-align: center;
+    margin-top: 10px;
+}
+.saved-pool {
+    display: none;
+}
 
 /* End Main Content */
 

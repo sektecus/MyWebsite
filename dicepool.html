@@ -41,7 +41,8 @@
                             <p>4) You have two options for banking your pool, "Bank (Clear)" and "Bank (Save)". Both options will save, or bank the total value of your current pool, in the column to the right of the pool. The first option will clear your pool and the second option will not.</p>
                             <p>5) If you would like to add a modifier to your banked pool values, simply supply the "Mod" input field, found next to the custom die entry, with the modifier value you'd like to apply. This modifier will be added to the pool value, every time you bank a pool.</p>
                             <p>6) If you would like to add multiples of the same die at a time, fill in the desired number in the field labeled "Qty", located next to the "Mod" field, then press the desired dice button.</p>
-                            <p>7) Finally, you may clear the pool and the bank by pressing the "Clear All" button.</p>
+                            <p>7) If you would like to save a dice pool, to be recalled later, you can do so by pressing the "Save Pool" button, below the dice pool section. The saved pool can then be recalled by pressing "Recall Pool". If the pool is successfully saved or recalled, the browser will alert you. Note that you can only save one pool at a time and reloading the page will delete the save.</p>
+                            <p>8) Finally, you may clear the pool and the bank by pressing the "Clear All" button.</p>
                         </div>
                     </div>
                     <p class="add-buttons">
@@ -78,6 +79,13 @@
                     
                 </div>
                 <div class="col totalSum" id="sum"></div>
+                <div class="col saved-pool-section">
+                    <div class="col save-recall-btns">
+                        <button class="save-pool-btn">Save Pool</button>
+                        <button class="recall-pool-btn">Recall Pool</button>
+                    </div>
+                    <div class="saved-pool"></div>
+                </div>
             </div>
         </div>
         <footer class="main-foot">
