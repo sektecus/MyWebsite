@@ -30,7 +30,13 @@ let resultController = (function() {
         type: [],
         id: [],
         results: []
-    }
+    };
+
+    let saved2 = {
+        type: [],
+        id: [],
+        results: []
+    };
 
     let bank = [];
 
@@ -130,16 +136,34 @@ let resultController = (function() {
             saved.type = [];
         },
 
+        clearSaveData2: function() {
+            saved2.id = [];
+            saved2.results = [];
+            saved2.type = [];
+        },
+
         saveData: function() {
             saved.id = data.id.slice();
             saved.results = data.results.slice();
             saved.type = data.type.slice();
         },
 
+        saveData2: function() {
+            saved2.id = data.id.slice();
+            saved2.results = data.results.slice();
+            saved2.type = data.type.slice();
+        },
+
         recallData: function() {
             data.id = saved.id;
             data.results = saved.results;
             data.type = saved.type;
+        },
+
+        recallData2: function() {
+            data.id = saved2.id;
+            data.results = saved2.results;
+            data.type = saved2.type;
         },
         
         clearBank: function() {
@@ -171,6 +195,7 @@ let UIController = (function() {
         diceColumn: '.dice',
         lockedColumn: '.locked',
         savedPoolColumn: '.saved-pool',
+        savedPoolColumn2: '.saved-pool-2',
         rollBtn: '.roll-dice',
         sumID: 'sum',
         container: '.pool',
@@ -180,7 +205,9 @@ let UIController = (function() {
         bank: '.bank-total',
         save: '.save-total',
         savePoolBtn: '.save-pool-btn',
+        savePoolBtn2: '.save-pool-btn-2',
         recallPoolBtn: '.recall-pool-btn',
+        recallPoolBtn2: '.recall-pool-btn-2',
         addedDice: '.added-dice'
     };
 
@@ -274,6 +301,8 @@ let controller = (function(resultCtrl, UICtrl) {
             document.querySelector(DOM.dxAdd).addEventListener('click', ctrlAddDx);
             document.querySelector(DOM.savePoolBtn).addEventListener('click', ctrlSavePool);
             document.querySelector(DOM.recallPoolBtn).addEventListener('click', ctrlRecallPool);
+            document.querySelector(DOM.savePoolBtn2).addEventListener('click', ctrlSavePool2);
+            document.querySelector(DOM.recallPoolBtn2).addEventListener('click', ctrlRecallPool2);
         }
         
     };
@@ -422,10 +451,21 @@ let controller = (function(resultCtrl, UICtrl) {
     let ctrlSavePool = function() {
         let DOM = UICtrl.getDOMstrings();
         $(DOM.savedPoolColumn).empty();
-        $(DOM.addedDice).clone().appendTo(DOM.savedPoolColumn);
+        let poolEl = document.querySelector(DOM.diceColumn).children;
+        $(poolEl).clone().appendTo(DOM.savedPoolColumn);
         resultCtrl.clearSaveData();
         resultCtrl.saveData();
-        alert('Dice Pool Saved!');
+        alert('Dice Pool 1 Saved!');
+    };
+
+    let ctrlSavePool2 = function() {
+        let DOM = UICtrl.getDOMstrings();
+        $(DOM.savedPoolColumn2).empty();
+        let poolEl = document.querySelector(DOM.diceColumn).children;
+        $(poolEl).clone().appendTo(DOM.savedPoolColumn2);
+        resultCtrl.clearSaveData2();
+        resultCtrl.saveData2();
+        alert('Dice Pool 2 Saved!');
     };
 
     let ctrlRecallPool = function() {
@@ -433,11 +473,25 @@ let controller = (function(resultCtrl, UICtrl) {
         $(DOM.diceColumn).empty();
         let html = '<p class="dice-banner"></p>'
         document.querySelector(DOM.diceColumn).insertAdjacentHTML('beforeend', html);
-        $(DOM.addedDice).clone().appendTo(DOM.diceColumn);
+        let poolEl = document.querySelector(DOM.savedPoolColumn).children;
+        $(poolEl).clone().appendTo(DOM.diceColumn);
         resultCtrl.clearData();
         resultCtrl.recallData();
         ctrlSum();
-        alert('Dice Pool Recalled Successfully');
+        alert('Dice Pool 1 Recalled Successfully');
+    };
+
+    let ctrlRecallPool2 = function() {
+        let DOM = UICtrl.getDOMstrings();
+        $(DOM.diceColumn).empty();
+        let html = '<p class="dice-banner"></p>'
+        document.querySelector(DOM.diceColumn).insertAdjacentHTML('beforeend', html);
+        let poolEl = document.querySelector(DOM.savedPoolColumn2).children;
+        $(poolEl).clone().appendTo(DOM.diceColumn);
+        resultCtrl.clearData();
+        resultCtrl.recallData2();
+        ctrlSum();
+        alert('Dice Pool 2 Recalled Successfully');
     };
 
     return {

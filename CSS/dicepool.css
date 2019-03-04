@@ -130,7 +130,11 @@ button {
     text-align: center;
     margin-top: 10px;
 }
-.saved-pool {
+.saved-pool-section-2 {
+    text-align: center;
+}
+.saved-pool,
+.saved-pool-2 {
     display: none;
 }
 
