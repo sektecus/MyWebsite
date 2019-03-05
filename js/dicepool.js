@@ -26,6 +26,8 @@ let resultController = (function() {
         results: []
     };
 
+    let dataBackup = [];
+
     let saved = {
         type: [],
         id: [],
@@ -64,19 +66,29 @@ let resultController = (function() {
         },
 
         roll: function() {
+            console.log(data.results);
+            dataBackup = data.results.slice();
             data.results = [];
+            console.log(dataBackup);
             
             for(let i = 0; i < data.type.length; i++) {
                 if(data.type[i] === 'dx') {
                     data.results[i] = 0;
                 }else {
-                    let itemID, num;
+                    let itemID, num, check;
                     itemID = data.type[i]; 
                     num = parseInt(itemID.split('D').pop());
-                    data.results[i] = Math.floor(Math.random() * num) + 1;
-                    document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+                    if($(`#check-${itemID}-${[i]}`).is(":checked")) {
+                        data.results[i] = dataBackup[i]
+                        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+                    }else {
+                        data.results[i] = Math.floor(Math.random() * num) + 1;
+                        document.getElementById(`value__${data.id[i]}`).textContent = `${data.results[i]}`;
+                    }
                 }
            }
+           dataBackup = [];
+           console.log(data.results);
         },
 
         addDiceItem: function(type, user) {
@@ -161,16 +173,16 @@ let resultController = (function() {
         },
 
         recallData: function() {
-            data.id = saved.id;
-            data.results = saved.results;
-            data.type = saved.type;
+            data.id = saved.id.slice();
+            data.results = saved.results.slice();
+            data.type = saved.type.slice();
             document.querySelector('#mod').value = saved.mod;
         },
 
         recallData2: function() {
-            data.id = saved2.id;
-            data.results = saved2.results;
-            data.type = saved2.type;
+            data.id = saved2.id.slice();
+            data.results = saved2.results.slice();
+            data.type = saved2.type.slice();
             document.querySelector('#mod').value = saved2.mod;
         },
         
@@ -224,10 +236,11 @@ let UIController = (function() {
         addDice: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type% ----> <span class="added-result" id="value__%id%">%value%</span></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type% ----> <div class="die-val-res"><span class="added-result" id="value__%id%">%value%</span></div><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
-            //html = html.replace('%id%', obj.id);
+            html = html.replace('%id%', obj.id);
+            html = html.replace('%type%', obj.type);
             html = html.replace('%type%', obj.type);
             html = html.replace('%type%', obj.type);
             html = html.replace('%value%', obj.value);

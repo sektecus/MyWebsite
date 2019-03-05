@@ -125,6 +125,15 @@ button {
         padding-right: 0px;
     }
 }
+.check {
+    float: right;
+    padding-top: 7px;
+    margin-left: 10px;
+}
+.die-val-res {
+    float: right;
+    padding-top: 7px;
+}
 .container button:hover {
     background-color: #FFF;
     color: #4f5763;
