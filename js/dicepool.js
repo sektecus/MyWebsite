@@ -29,13 +29,15 @@ let resultController = (function() {
     let saved = {
         type: [],
         id: [],
-        results: []
+        results: [],
+        mod: 0
     };
 
     let saved2 = {
         type: [],
         id: [],
-        results: []
+        results: [],
+        mod: 0
     };
 
     let bank = [];
@@ -134,36 +136,42 @@ let resultController = (function() {
             saved.id = [];
             saved.results = [];
             saved.type = [];
+            saved.mod = 0;
         },
 
         clearSaveData2: function() {
             saved2.id = [];
             saved2.results = [];
             saved2.type = [];
+            saved2.mod = 0;
         },
 
         saveData: function() {
             saved.id = data.id.slice();
             saved.results = data.results.slice();
             saved.type = data.type.slice();
+            saved.mod = document.querySelector('#mod').value;
         },
 
         saveData2: function() {
             saved2.id = data.id.slice();
             saved2.results = data.results.slice();
             saved2.type = data.type.slice();
+            saved2.mod = document.querySelector('#mod').value;
         },
 
         recallData: function() {
             data.id = saved.id;
             data.results = saved.results;
             data.type = saved.type;
+            document.querySelector('#mod').value = saved.mod;
         },
 
         recallData2: function() {
             data.id = saved2.id;
             data.results = saved2.results;
             data.type = saved2.type;
+            document.querySelector('#mod').value = saved2.mod;
         },
         
         clearBank: function() {
@@ -308,7 +316,7 @@ let controller = (function(resultCtrl, UICtrl) {
     };
     let ctrlAddDx = function() {
         let input = document.querySelector('#user').value;
-        let qty = document.querySelector('#qty').value;
+        let qty = document.querySelector('#qtyx').value;
         if(input) {
             input = input;
         }else {
@@ -326,8 +334,7 @@ let controller = (function(resultCtrl, UICtrl) {
             ctrlSum();
         }
     }
-    let genAdd = function(type) {
-        let qty = document.querySelector('#qty').value;
+    let genAdd = function(type, qty) {
         if(qty) {
             qty = qty;
         }else {
@@ -341,36 +348,44 @@ let controller = (function(resultCtrl, UICtrl) {
         }
     };
     let ctrlAddD3 = function() {
+        let qty = document.querySelector('#qty3').value;
         let type = 'D3';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD4 = function() {
+        let qty = document.querySelector('#qty4').value;
         let type = 'D4';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD6 = function() {
+        let qty = document.querySelector('#qty6').value;
         let type = 'D6';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD8 = function() {
+        let qty = document.querySelector('#qty8').value;
         let type = 'D8';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD10 = function() {
+        let qty = document.querySelector('#qty10').value;
         let type = 'D10';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD12 = function() {
+        let qty = document.querySelector('#qty12').value;
         let type = 'D12';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD20 = function() {
+        let qty = document.querySelector('#qty20').value;
         let type = 'D20';
-        genAdd(type);
+        genAdd(type, qty);
     };
     let ctrlAddD100 = function() {
+        let qty = document.querySelector('#qty100').value;
         let type = 'D100';
-        genAdd(type);
+        genAdd(type, qty);
     };
 
     let ctrlSum = function(){
