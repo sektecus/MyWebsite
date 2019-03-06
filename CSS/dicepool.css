@@ -132,6 +132,12 @@ button {
         padding-left: 0;
         padding-right: 0;
     }
+    .add-buttons button {
+        width: 25%;
+    }
+    .qty {
+        width: 15%;
+    }
 }
 .check {
     float: right;

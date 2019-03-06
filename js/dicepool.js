@@ -1,11 +1,13 @@
 
 /******************************************************/
 //RESULTS CONTROLLER
+//Holds and returns all queried functions for calculations
 
 let resultController = (function() {
 
 
-//Track IDs for dice and values
+    //Dice Pool object constructor and sum function to be used in returned functions below
+    /*********************************************************************************** */
     let dicePoolItem = function(type, id, value) {
         this.type = type;
         this.id = id;
@@ -20,6 +22,8 @@ let resultController = (function() {
         return sum;
     };
 
+    //Data objects used while calculating data
+    /*************************************** */
     let data = {
         type: [],
         id: [],
@@ -44,7 +48,8 @@ let resultController = (function() {
 
     let bank = [];
 
-// Sum dice totals
+    //Functions triggered by and returned to the Global App Controller
+    /*************************************************************** */
     return {
         sum: function() {
             let sum = calcSum(bank) + calcSum(data.results);
@@ -199,6 +204,7 @@ let resultController = (function() {
 
 /******************************************************/
 //UI CONTROLLER
+//Stores and returns DOM items and functions, used by the Gobal App Controller, for the purpose of changing the UI
 
 let UIController = (function() {
 
@@ -231,7 +237,8 @@ let UIController = (function() {
         addedDice: '.added-dice'
     };
 
-
+    //Functions triggered by and returned to the Global App Controller
+    /*************************************************************** */
     return {
         addDice: function(obj){
             $('.dice-banner').empty();
@@ -299,6 +306,7 @@ let UIController = (function() {
 
 /******************************************************/
 //GLOBAL APP CONTROLLER
+//Directs actions and functions, utilizing both the UI Controller and the Results Controller
 
 let controller = (function(resultCtrl, UICtrl) {
 
@@ -327,6 +335,9 @@ let controller = (function(resultCtrl, UICtrl) {
         }
         
     };
+
+    //Functions for adding dice - Triggered by Event Listeners above
+    /************************************************************* */
     let ctrlAddDx = function() {
         let input = document.querySelector('#user').value;
         let qty = document.querySelector('#qtyx').value;
@@ -401,6 +412,8 @@ let controller = (function(resultCtrl, UICtrl) {
         genAdd(type, qty);
     };
 
+    //Functions for adding and deleting items, as well as summing and displaying calculations
+    /************************************************************************************** */
     let ctrlSum = function(){
         let sum = resultCtrl.sumPool();
         let sumBank = resultCtrl.sumBank();
@@ -418,7 +431,7 @@ let controller = (function(resultCtrl, UICtrl) {
         //console.log('old code');
         //type = itemType;
         itemID = event.target.parentNode.id;
-        console.log(itemID);
+        //console.log(itemID);
         //alert(`The id of the element you click is ${itemID}`);
         
         if(itemID) {
@@ -526,9 +539,7 @@ let controller = (function(resultCtrl, UICtrl) {
         init: function() {
             console.log('Application has started...')
 
-            //1. Clear dice pool
-
-            //2. Setup event listeners
+            //Setup event listeners
             setupEventListeners();
         }
     }
