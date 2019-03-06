@@ -66,10 +66,10 @@ let resultController = (function() {
         },
 
         roll: function() {
-            console.log(data.results);
+            //console.log(data.results);
             dataBackup = data.results.slice();
             data.results = [];
-            console.log(dataBackup);
+            //console.log(dataBackup);
             
             for(let i = 0; i < data.type.length; i++) {
                 if(data.type[i] === 'dx') {
@@ -88,7 +88,7 @@ let resultController = (function() {
                 }
            }
            dataBackup = [];
-           console.log(data.results);
+           //console.log(data.results);
         },
 
         addDiceItem: function(type, user) {
@@ -236,7 +236,7 @@ let UIController = (function() {
         addDice: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type% ----> <div class="die-val-res"><span class="added-result" id="value__%id%">%value%</span></div><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type%: <div class="die-val-res"><span class="added-result" id="value__%id%">%value%</span></div><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -264,7 +264,7 @@ let UIController = (function() {
         */
         displayRoll: function(sumPool, sumBank) {
             let element = DOMstrings.sumID   
-            return document.getElementById(element).textContent = `${sumPool} <= Pool Total | Bank Total => ${sumBank}`;
+            return document.getElementById(element).textContent = `${sumPool} = Pool Total | Bank Total = ${sumBank}`;
         },
 
         deleteDice: function(selectorID) {

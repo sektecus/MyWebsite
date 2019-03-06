@@ -124,6 +124,14 @@ button {
     .locked-banner {
         padding-right: 0px;
     }
+    .check {
+        margin-left: 0;
+    }
+    .deleteDie {
+        width: 50px;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 .check {
     float: right;
