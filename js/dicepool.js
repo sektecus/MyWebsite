@@ -243,7 +243,7 @@ let UIController = (function() {
         addDice: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type%: <div class="die-val-res"><span class="added-result" id="value__%id%">%value%</span></div><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type%: <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -323,7 +323,7 @@ let controller = (function(resultCtrl, UICtrl) {
             document.querySelector(DOM.d20Add).addEventListener('click', ctrlAddD20);
             document.querySelector(DOM.d100Add).addEventListener('click', ctrlAddD100);
             document.querySelector(DOM.rollBtn).addEventListener('click', ctrlRoll);
-            document.querySelector(DOM.container).addEventListener('click', ctrlDel);
+            //document.querySelector(DOM.container).addEventListener('click', ctrlDel);
             document.querySelector(DOM.clear).addEventListener('click', ctrlClear);
             document.querySelector(DOM.bank).addEventListener('click', ctrlBank);
             document.querySelector(DOM.save).addEventListener('click', ctrlSave);
@@ -336,6 +336,21 @@ let controller = (function(resultCtrl, UICtrl) {
         
     };
 
+    //New delete function, added to fix bug wherein dice would be deleted when clicking on white space around value
+    /************************************************************************************************************ */
+    $(document).on('click', '#deleteDie', function(event) {
+        let itemID, splitID, type, ID;
+        itemID = event.target.parentNode.id;
+        console.log(itemID);
+        if(itemID) {
+            splitID = itemID.split('__'); 
+            type = splitID[0];
+            ID = parseInt(splitID[1]);
+            resultCtrl.deleteData(type, ID);
+            UICtrl.deleteDice(itemID);
+            ctrlSum();
+        }
+    });
     //Functions for adding dice - Triggered by Event Listeners above
     /************************************************************* */
     let ctrlAddDx = function() {
@@ -428,12 +443,8 @@ let controller = (function(resultCtrl, UICtrl) {
 
     let ctrlDel = function(event) {
         let itemID, splitID, type, ID;
-        //console.log('old code');
-        //type = itemType;
         itemID = event.target.parentNode.id;
-        //console.log(itemID);
-        //alert(`The id of the element you click is ${itemID}`);
-        
+        console.log(itemID);
         if(itemID) {
             splitID = itemID.split('__'); 
             //console.log(splitID);
@@ -445,7 +456,6 @@ let controller = (function(resultCtrl, UICtrl) {
             UICtrl.deleteDice(itemID);
             ctrlSum();
         }
-        
     };
 
     let ctrlBank = function() {
