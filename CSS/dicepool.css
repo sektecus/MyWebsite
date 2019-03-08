@@ -208,12 +208,33 @@ button {
     font-size: 150%;
     font-style: bold;
 }
+.banner-backup {
+    display: none;
+}
 @media screen and (max-width: 1024px) {
     .banner-pic {
-        display: none;
+        height: 50px;
+        margin-left: 15px;
+        margin-right: 15px;
+        top: 15px;
     }
     .banner-text {
-        font-size: 100%;
+        font-size: 120%;
+    }
+}
+@media screen and (max-width: 768px) {
+    .banner-pic {
+        height: 30px;
+        margin-left: 5px;
+        margin-right: 5px;
+        top: 7.5px;
+    }
+    .banner-text {
+        display: none;
+    }
+    .banner-backup {
+        display: inline;
+        font-size: 120%;
     }
 }
 
