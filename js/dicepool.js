@@ -243,6 +243,19 @@ let UIController = (function() {
         addDice: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button><img class="dice-pics" src="images/%type%.png"> : <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            html = html.replace('%id%', obj.id);
+            html = html.replace('%id%', obj.id);
+            html = html.replace('%id%', obj.id);
+            html = html.replace('%type%', obj.type);
+            html = html.replace('%type%', obj.type);
+            html = html.replace('%type%', obj.type);
+            html = html.replace('%value%', obj.value);
+            return document.querySelector(element).insertAdjacentHTML('beforeend', html)
+        },
+        addDiceX: function(obj){
+            $('.dice-banner').empty();
+            let element = DOMstrings.diceColumn
             let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type%: <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -296,6 +309,19 @@ let UIController = (function() {
 
         getDOMstrings: function() {
             return DOMstrings;
+        },
+        clearQty: function() {
+            document.querySelector('#qty3').value = '';
+            document.querySelector('#qty4').value = '';
+            document.querySelector('#qty6').value = '';
+            document.querySelector('#qty8').value = '';
+            document.querySelector('#qty10').value = '';
+            document.querySelector('#qty12').value = '';
+            document.querySelector('#qty20').value = '';
+            document.querySelector('#qty100').value = '';
+            document.querySelector('#qtyx').value = '';
+            document.querySelector('#mod').value = '';
+            document.querySelector('#user').value = '';
         }
     }
 
@@ -341,7 +367,7 @@ let controller = (function(resultCtrl, UICtrl) {
     $(document).on('click', '#deleteDie', function(event) {
         let itemID, splitID, type, ID;
         itemID = event.target.parentNode.id;
-        console.log(itemID);
+        //console.log(itemID);
         if(itemID) {
             splitID = itemID.split('__'); 
             type = splitID[0];
@@ -369,7 +395,7 @@ let controller = (function(resultCtrl, UICtrl) {
         for(let i = 0; i<qty; i++) {
             let type = `D${input}`;
             let newDie = resultCtrl.addDiceItem(type, input);
-            UICtrl.addDice(newDie);
+            UICtrl.addDiceX(newDie);
             ctrlSum();
         }
     }
@@ -444,7 +470,7 @@ let controller = (function(resultCtrl, UICtrl) {
     let ctrlDel = function(event) {
         let itemID, splitID, type, ID;
         itemID = event.target.parentNode.id;
-        console.log(itemID);
+        //console.log(itemID);
         if(itemID) {
             splitID = itemID.split('__'); 
             //console.log(splitID);
@@ -495,6 +521,7 @@ let controller = (function(resultCtrl, UICtrl) {
         resultCtrl.clearData();
         UICtrl.clearBank();
         resultCtrl.clearBank();
+        UICtrl.clearQty();
         ctrlSum();
         
     };
