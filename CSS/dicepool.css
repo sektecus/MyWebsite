@@ -142,6 +142,11 @@ button {
 .sec-label {
     font-weight: bold;
 }
+@media screen and (max-width: 1024px) {
+    .added-dice {
+        width: 25%;
+    }
+}
 @media screen and (max-width: 768px) {
     .dice-banner,
     .added-dice,
@@ -202,7 +207,10 @@ button {
     margin-left: 35px;
 }
 .main-text-body {
-    margin-left: 20px;
+    margin-left: 25px;
+}
+.pool-display {
+    margin-left: 12px;
 }
 .saved-pool,
 .saved-pool-2 {
