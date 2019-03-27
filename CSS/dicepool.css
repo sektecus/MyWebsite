@@ -130,10 +130,9 @@ button {
     margin-bottom: 20px;
 }
 .deleteDie {
-    width: 30px;
-    height: 30px;
-    padding-left: 0;
-    padding-right: 0;
+    width: 20px;
+    height: 20px;
+    padding: 0px;
     border-radius: 50%;
 }
 .locked {
@@ -150,16 +149,13 @@ button {
         padding-right: 0px;
     }
     .added-dice {
-        width: 35%;
+        width: 33%;
     }
     .add-buttons button {
         width: 25%;
     }
     .qty {
         width: 15%;
-    }
-    .check {
-        margin-left: 0px;
     }
 }
 .check {
