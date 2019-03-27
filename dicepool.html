@@ -43,7 +43,7 @@
                             <p>1) Begin by populating your dice pool. To do this, click the buttons below, labeled D3, D4, and so on. Additionally, you may add a custom die by filling in the input field next to the "D" button and then pressing said button.</p>
                             <p>2) As you add each dice, you will notice they are automatically populated with a random value, between 1 and the value assigned to the die (i.e. D6's value is 6). As dice are added, you'll also notice the Pool Total, at the bottom of the page, will display the total value of all the dice you've added.</p>
                             <p>3) Once you're satisfied with your pool, you can then re-roll all their values by pressing the "Roll Dice" button. Additionally, you may choose to exempt specific dice from the re-roll by checking the box to the right of the roll's value. Finally, you may save your pool total by pressing one of the two bank buttons, explained in the next step.</p>
-                            <p>4) You have two options for banking your pool, "Bank (Clear)" and "Bank (Save)". Both options will save, or bank the total value of your current pool, in the column to the right of the pool. The first option will clear your pool and the second option will not.</p>
+                            <p>4) You have two options for banking your pool, "Bank (Clear)" and "Bank (Save)". Both options will save, or bank the total value of your current pool, in the section below the pool. The first option will clear your pool and the second option will not.</p>
                             <p>5) If you would like to add a modifier to your banked pool values, simply supply the "Mod" input field, found next to the custom die entry, with the modifier value you'd like to apply. This modifier will be added to the pool value, every time you bank a pool.</p>
                             <p>6) If you would like to add multiples of the same die at a time, fill in the desired number in the field labeled "Qty", located to the left of each dice button, then press the desired dice button.</p>
                             <p>7) If you would like to save a dice pool, including the filled in modifier field, to be recalled later, you can do so by pressing one of the "Save Pool" buttons, below the dice pool section. The saved pools can then be recalled by pressing one of the "Recall Pool" buttons. If the pool is successfully saved or recalled, the browser will alert you. Note that you can only save two pools at a time and reloading the page will delete both saved pools.</p>
@@ -73,25 +73,27 @@
                     </p>
                 </div>    
                 <div class="col pool-display">
-                    <button class="roll-dice">Roll Dice</button><button class="clearPage">Clear All</button>
+                    <button class="roll-dice">Roll Dice</button><button class="clearPage">Clear All</button><button class="clear-checks">Clear Checks</button>
                     <button class="bank-total">Bank (Clear)</button><button class="save-total">Bank (Save)</button>
-                    <p>Current Pool&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBanked Values</p>
+                    
                 </div>
                 <div class="row pool">
-                    <div class="col col-xs-6 dice">
+                    <div class="col dice">
+                        <div class="pool-label"><p class="sec-label">Current Pool:</p></div>
                         <p class="dice-banner">Click dice buttons (above) to add them to your pool</p>
                         <!--
                         <div class="added-dice" id="d6__0">D6: </div>
                         -->
                     </div>
-                    
-                    <div class="col col-xs-6 locked">
+                    <div class="col totalSum" id="sum"></div>
+                    <div class="col locked">
+                        <div class="bank-label"><p class="sec-label">Banked Values:</p></div>
                         <p class="locked-banner">Click "Bank" button (above) to store your current total</p>
                     </div>
                     
                     
                 </div>
-                <div class="col totalSum" id="sum"></div>
+                
                 <div class="col saved-pool-section">
                     <div class="col save-recall-btns">
                         <button class="save-pool-btn">Save Pool (1)</button>

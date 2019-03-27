@@ -66,6 +66,10 @@ let resultController = (function() {
             return bankTotal;
         },
 
+        returnBank: function() {
+            return bank;
+        },
+
         storeBank: function(total) {
             bank.push(total);
         },
@@ -234,7 +238,8 @@ let UIController = (function() {
         savePoolBtn2: '.save-pool-btn-2',
         recallPoolBtn: '.recall-pool-btn',
         recallPoolBtn2: '.recall-pool-btn-2',
-        addedDice: '.added-dice'
+        addedDice: '.added-dice',
+        clearChecks: '.clear-checks'
     };
 
     //Functions triggered by and returned to the Global App Controller
@@ -243,7 +248,7 @@ let UIController = (function() {
         addDice: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button><img class="dice-pics" src="images/%type%.png"> : <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">X</button><img class="dice-pics" src="images/%type%.png"> : <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -256,7 +261,7 @@ let UIController = (function() {
         addDiceX: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">Delete</button>%type%: <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">X</button>%type%: <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -266,10 +271,10 @@ let UIController = (function() {
             html = html.replace('%value%', obj.value);
             return document.querySelector(element).insertAdjacentHTML('beforeend', html)
         },
-        bankTotal: function(total) {
+        bankTotal: function(total, bankID) {
             $('.locked-banner').empty();
             let element = DOMstrings.lockedColumn;
-            let html = `<div class="added-total">${total}</div>`;
+            let html = `<div class="added-total">${bankID}) ${total}</div>`;
             return document.querySelector(element).insertAdjacentHTML('beforeend', html);
         },
         /*
@@ -296,14 +301,14 @@ let UIController = (function() {
             //console.log('Enter code to clear page here');
             let element = DOMstrings.diceColumn;
             $(element).empty();
-            let html = '<p class="dice-banner">Click dice buttons (above) to add them to your pool</p>'
+            let html = '<div class="pool-label"><p class="sec-label">Current Pool:</p></div><p class="dice-banner">Click dice buttons (above) to add them to your pool</p>'
             document.querySelector(element).insertAdjacentHTML('beforeend', html);
         },
 
         clearBank: function() {
             let element = DOMstrings.lockedColumn;
             $(element).empty();
-            let html = '<p class="locked-banner">Click "Bank" buttons (above) to store your current total</p>'
+            let html = '<div class="bank-label"><p class="sec-label">Banked Values:</p></div><p class="locked-banner">Click "Bank" buttons (above) to store your current total</p>'
             document.querySelector(element).insertAdjacentHTML('beforeend', html);
         },
 
@@ -358,6 +363,7 @@ let controller = (function(resultCtrl, UICtrl) {
             document.querySelector(DOM.recallPoolBtn).addEventListener('click', ctrlRecallPool);
             document.querySelector(DOM.savePoolBtn2).addEventListener('click', ctrlSavePool2);
             document.querySelector(DOM.recallPoolBtn2).addEventListener('click', ctrlRecallPool2);
+            document.querySelector(DOM.clearChecks).addEventListener('click', ctrlChecks);
         }
         
     };
@@ -379,6 +385,9 @@ let controller = (function(resultCtrl, UICtrl) {
     });
     //Functions for adding dice - Triggered by Event Listeners above
     /************************************************************* */
+    let ctrlChecks = function() {
+        $('input:checkbox').removeAttr('checked');
+    }
     let ctrlAddDx = function() {
         let input = document.querySelector('#user').value;
         let qty = document.querySelector('#qtyx').value;
@@ -494,7 +503,10 @@ let controller = (function(resultCtrl, UICtrl) {
         }
         let n = parseInt(input);
         let total = pool + n;
-        UICtrl.bankTotal(total);
+        let bankArray = resultCtrl.returnBank();
+        let bankID = bankArray.length + 1;
+        //console.log(bankID);
+        UICtrl.bankTotal(total, bankID);
         UICtrl.clearDice();
         resultCtrl.clearData();
         resultCtrl.storeBank(total);
@@ -511,7 +523,9 @@ let controller = (function(resultCtrl, UICtrl) {
         }
         let n = parseInt(input);
         let total = pool + n;
-        UICtrl.bankTotal(total);
+        let bankArray = resultCtrl.returnBank();
+        let bankID = bankArray.length + 1;
+        UICtrl.bankTotal(total, bankID);
         resultCtrl.storeBank(total);
         ctrlSum();
     }

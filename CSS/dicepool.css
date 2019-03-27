@@ -92,7 +92,7 @@ button {
     text-align: center;
 }
 .dice {
-    text-align: right;
+    text-align: center;
 }
 
 .user {
@@ -117,7 +117,31 @@ button {
 .dice-banner,
 .added-dice,
 .locked-banner {
-    padding-right: 50px;
+    padding-right: 0px;
+}
+.added-dice {
+    display: inline-block;
+    width: 15%;
+}
+.added-total {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.deleteDie {
+    width: 30px;
+    height: 30px;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 50%;
+}
+.locked {
+    background: #dee1e5;
+    text-align: center;
+}
+.sec-label {
+    font-weight: bold;
 }
 @media screen and (max-width: 768px) {
     .dice-banner,
@@ -125,13 +149,8 @@ button {
     .locked-banner {
         padding-right: 0px;
     }
-    .check {
-        margin-left: 0;
-    }
-    .deleteDie {
-        width: 50px;
-        padding-left: 0;
-        padding-right: 0;
+    .added-dice {
+        width: 30%;
     }
     .add-buttons button {
         width: 25%;
@@ -177,11 +196,11 @@ button {
 .saved-pool-section {
     text-align: center;
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 35px;
 }
 .saved-pool-section-2 {
     text-align: center;
-    margin-left: 20px;
+    margin-left: 35px;
 }
 .main-text-body {
     margin-left: 20px;
