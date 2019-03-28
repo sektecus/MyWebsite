@@ -248,7 +248,7 @@ let UIController = (function() {
         addDice: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">X</button><img class="dice-pics" src="images/%type%.png"> : <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">X</button><img class="dice-pics" src="images/%type%.png"><span class="colon"> : </span><span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -261,7 +261,7 @@ let UIController = (function() {
         addDiceX: function(obj){
             $('.dice-banner').empty();
             let element = DOMstrings.diceColumn
-            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">X</button>%type%: <span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
+            let html = '<div class="added-dice" id="%type%__%id%"><button class="deleteDie" id="deleteDie">X</button>%type%<span class="colon">: </span><span class="added-result" id="value__%id%">%value%</span><div class="check"><input type="checkbox" id="check-%type%-%id%"></div></div>'
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
             html = html.replace('%id%', obj.id);
@@ -547,7 +547,7 @@ let controller = (function(resultCtrl, UICtrl) {
         $(poolEl).clone().appendTo(DOM.savedPoolColumn);
         resultCtrl.clearSaveData();
         resultCtrl.saveData();
-        alert('Dice Pool 1 Saved!');
+        //alert('Dice Pool 1 Saved!');
     };
 
     let ctrlSavePool2 = function() {
@@ -557,7 +557,7 @@ let controller = (function(resultCtrl, UICtrl) {
         $(poolEl).clone().appendTo(DOM.savedPoolColumn2);
         resultCtrl.clearSaveData2();
         resultCtrl.saveData2();
-        alert('Dice Pool 2 Saved!');
+        //alert('Dice Pool 2 Saved!');
     };
 
     let ctrlRecallPool = function() {
@@ -570,7 +570,7 @@ let controller = (function(resultCtrl, UICtrl) {
         resultCtrl.clearData();
         resultCtrl.recallData();
         ctrlSum();
-        alert('Dice Pool 1 Recalled Successfully');
+        //alert('Dice Pool 1 Recalled Successfully');
     };
 
     let ctrlRecallPool2 = function() {
@@ -583,7 +583,7 @@ let controller = (function(resultCtrl, UICtrl) {
         resultCtrl.clearData();
         resultCtrl.recallData2();
         ctrlSum();
-        alert('Dice Pool 2 Recalled Successfully');
+        //alert('Dice Pool 2 Recalled Successfully');
     };
 
     return {

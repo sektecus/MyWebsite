@@ -212,9 +212,27 @@ button {
 .pool-display {
     margin-left: 12px;
 }
+.saved-pool button,
+.saved-pool-2 button,
+.saved-pool input,
+.saved-pool-2 input,
+.saved-pool .sec-label,
+.saved-pool-2 .sec-label,
+.saved-pool .added-result,
+.saved-pool-2 .added-result,
+.saved-pool .colon,
+.saved-pool-2 .colon {
+    display: none;
+}
 .saved-pool,
 .saved-pool-2 {
-    display: none;
+    padding-bottom: 25px;
+    padding-top: -50px;
+    margin-left: -30px;
+}
+.saved-pool .added-dice,
+.saved-pool-2 .added-dice {
+    width: 5%;
 }
 .dice-pics {
     height: 30px;
@@ -247,6 +265,10 @@ button {
     .banner-text {
         font-size: 120%;
     }
+    .saved-pool .added-dice,
+    .saved-pool-2 .added-dice {
+        width: 7%;
+    }
 }
 @media screen and (max-width: 768px) {
     .banner-pic {
@@ -261,6 +283,10 @@ button {
     .banner-backup {
         display: inline;
         font-size: 120%;
+    }
+    .saved-pool .added-dice,
+    .saved-pool-2 .added-dice {
+        width: 10%;
     }
 }
 
